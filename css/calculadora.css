@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    height: 100vw;
+    font-family: 'Roboto';
+    background-color: oklch(20.8% 0.042 265.755);
+}
+
+
+.icone{
+    border-radius: 50%;
+    padding: 1em;
+    width: 2rem;
+    background-image: linear-gradient(135deg, hsl(158 64% 52%) 0%, hsl(197 92% 61%) 100%);
+
+}
+
+.text-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:1rem;
+}
+
+.text-container h1{
+    margin: 1rem 0 1rem 0;
+    background: linear-gradient(135deg, hsl(158 64% 52%) 0%, hsl(197 92% 61%) 100%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     font-size: 3rem;
+}
+
+.text-container p{
+   color: hsl(213 20% 45%); 
+}
+
+.calculadora-title{
+    display: flex;
+    gap: 5px;
+}
+
+.calculadora-title p{
+    color: hsl(213 30% 15%);
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+.calculadora-body{
+    background-color: #FFFFFF;
+    display: flex;
+    width: 35%;
+    padding: 3em 2em;
+    margin:0 auto;
+    box-shadow: 0 4px 24px -4px hsl(158 64% 52% / 0.2);
+    box-shadow: 0 4px 24px -4px hsl(158 64% 52% / 0.2);
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calculadora-main-div{
+    display: flex;
+    gap: 1rem;
+}
+
+.coluna-calculadora{
+    display:flex;
+    flex-direction: column;
+    width:50%;
+    gap: 0.5rem;
+}
+
+label{
+    font-size: 0.75rem;
+    color: #5c708a;
+}
+
+input{
+    background-color: #f9fafb;
+    font-size: 1rem;
+    padding: 0.7rem;
+    border: 1px solid #e7eaef;
+    border-radius: 8px;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, hsl(158 64% 52%) 0%, hsl(197 92% 61%) 100%);
+    background-clip: border-box;
+    color:#ffffff;
+    padding: 0.5rem;
+    border:none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor:pointer;
+}
+
+.resultados-texto{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resultados-titulo,.resultado-lampada-texto{
+    display: flex;
+    align-items: center;
+}
+
+.card-consumo-mensal {
+  background: linear-gradient(to bottom right, hsl(158 64% 52% / 0.05), transparent);
+  border: 1px solid hsl(158 64% 52% / 0.2);
+  border-radius: 8px;
+  width: 30%;
+  padding: 1rem;
+  gap:0.5rem;
+  border: 1px solid hsl(158 64% 52% / 0.2);
+}
+
+.resultados-cards{
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+}
+
+.resultado-titulo-card{
+    color: #5c708a;
+    margin-bottom: 0.5rem;
+}
+
+.mensal{
+    color: #36d399;
+    font-weight: 700;
+    font-size: 1.12rem;
+}
+
+.custo{
+    color: #40c3f7;
+    font-weight: 700;
+    font-size: 1.12rem;
+}
+
+.diario{
+    color: #36d399;
+    font-weight: 700;
+    font-size: 1.12rem;
+}
+
+.tarifa-titulo{
+    display:flex;
+    gap:1rem;
+}
+
+.tarifa-card{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calculadora-resultados{
+    display:none;
+}
+
+.home-botao{
+    display: flex;
+    width: fit-content;
+    background-color: #f9fafb;
+    border: 2px solid #e7eaef;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.home-botao a{
+    text-decoration: none;
+    color:#000000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+dialog {
+
+  position: absolute; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  margin: 0;
+  border-radius: 8px;
+  border: none;
+  padding: 3rem;
+  display:flex;
+  flex-direction: column;
+  gap: 1rem;
+    
+}
+
+dialog::backdrop {
+  /*
+  Usamos o formato RGBA:
+  R: Red (Vermelho) - 0
+  G: Green (Verde) - 0
+  B: Blue (Azul) - 0 (Preto puro)
+  A: Alpha (Transparência) - de 0.0 (totalmente transparente) a 1.0 (opaco)
+  */
+  
+  /* Exemplo: Fundo preto com 80% de opacidade (bem escuro) */
+  background-color: rgba(49, 46, 46, 0.8);
+}
+
+dialog:modal {
+    margin: auto;
+}
+
+dialog {
+  inset: 0; 
+  margin: auto; 
+  
+  width: fit-content; /* ou um valor fixo, ex: 80% */
+  height: fit-content; /* ou um valor fixo, ex: 300px */
+}
+
+dialog:modal {
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+}
+
+.error-modal{
+    color: red;
+    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+        width: 100vw;
+    }
+
+    .text-container h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .text-container p {
+        text-align: center;
+        font-size: 1rem;
+        padding: 0 1em;
+    }
+
+    .home-botao {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* CALCULADORA PRINCIPAL */
+    .calculadora-body {
+        width: 90%;
+        padding: 2em 1.2em;
+        margin: 1.5em auto;
+    }
+
+    .calculadora-title {
+        justify-content: center;
+    }
+
+    .calculadora-title p {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    /* Colunas viram uma embaixo da outra */
+    .calculadora-main-div {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .coluna-calculadora {
+        width: 100%;
+    }
+
+    input {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    button {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    /* RESULTADOS */
+    .resultados-texto {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .resultados-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-consumo-mensal {
+        width: 100%;
+        text-align: center;
+    }
+
+    .resultado-titulo-card {
+        font-size: 1rem;
+    }
+
+    .mensal,
+    .custo,
+    .diario {
+        font-size: 1.1rem;
+    }
+
+    /* TARIFA */
+    .tarifa-card {
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+
+    .tarifa-card p {
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+    }
+}
+
+/* 📱 Ajuste extra para telas muito pequenas (até 480px) */
+@media screen and (max-width: 480px) {
+    .text-container h1 {
+        font-size: 1.7rem;
+    }
+
+    .calculadora-body {
+        width: 95%;
+        padding: 1.5em 1em;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+
+    .card-consumo-mensal {
+        padding: 0.8rem;
+    }
+
+    .resultado-titulo-card {
+        font-size: 0.9rem;
+    }
+
+    .mensal,
+    .custo,
+    .diario {
+        font-size: 1rem;
+    }
+}
