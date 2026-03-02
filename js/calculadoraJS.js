@@ -43,7 +43,7 @@ const tarifasPorEstado = {
 
 let tarifa = 0.75;
 
-const calcularConsumoKwh = (potencia, horas) => (potencia * horas)/1000
+const calcularConsumoKwh = (potencia, horas) => (potencia * horas) / 1000
 
 const calcularConsumoEmRealDia = (consumoEmKwh, tarifa) => consumoEmKwh * tarifa;
 
@@ -52,7 +52,7 @@ const calcularCustoMensalEmReal = (gastoEmRealDia) => gastoEmRealDia * 30;
 const consumoMensalEmKwh = (gastoDiarioKwh) => gastoDiarioKwh * 30;
 
 
-botao.addEventListener('click', (e) =>{
+botao.addEventListener('click', (e) => {
     e.preventDefault();
     const valorPotencia = Number(inputPotencia.value);
     const valorDias = Number(inputDiasMes.value);
@@ -65,7 +65,7 @@ botao.addEventListener('click', (e) =>{
     consumoMensalTexto.innerText = `${resultadoKwhMensal} Kwh`;
 
     const resultadoCustoDiario = calcularConsumoEmRealDia(resultadoKwh, tarifa);
-    
+
     const resultadoCustoMensal = calcularCustoMensalEmReal(resultadoCustoDiario);
 
     custoMensalTexto.innerText = ` R$ ${resultadoCustoMensal.toFixed(2)}`;
@@ -89,7 +89,7 @@ botalModal.addEventListener('click', async () => {
 
     const valorCep = inputCep.value;
 
-    if(!inputCep.value){
+    if (!inputCep.value) {
         criaErro(inputCep, 'Nenhum Cep Digitado');
         return;
     }
@@ -97,22 +97,22 @@ botalModal.addEventListener('click', async () => {
     const dadosDoEstado = await buscarEstado(valorCep);
     console.log(dadosDoEstado);
 
-   if(tarifasPorEstado[dadosDoEstado]){
-    tarifa = tarifasPorEstado[dadosDoEstado];
-   } else {
+    if (tarifasPorEstado[dadosDoEstado]) {
+        tarifa = tarifasPorEstado[dadosDoEstado];
+    } else {
         console.log('caiu aqui')
         criaErro(inputCep, 'CEP inválido ou inexistente');
         return;
-   }
+    }
 
-   inputTarifa.value = tarifa.toFixed(2);
+    inputTarifa.value = tarifa.toFixed(2);
 
     modal.close();
     modal.style = 'display:none';
 
 })
 
-async function buscarEstado(cep){
+async function buscarEstado(cep) {
 
     const APIurl = `https://brasilapi.com.br/api/cep/v1/${cep}`
 
@@ -122,22 +122,22 @@ async function buscarEstado(cep){
     return data.state;
 }
 
-    const inputCep = document.getElementById('CEP-input');
+const inputCep = document.getElementById('CEP-input');
 
 inputCep.addEventListener('input', (e) => {
     let valor = e.target.value.replace(/\D/g, '');
     inputCep.value = valor;
 })
 
-function criaErro(campo, msg){
-    
+function criaErro(campo, msg) {
+
     const erroAnterior = campo.nextElementSibling;
-    if(erroAnterior && erroAnterior.classList.contains('error-modal')){
+    if (erroAnterior && erroAnterior.classList.contains('error-modal')) {
         erroAnterior.remove();
     }
 
     const divErro = document.createElement('div');
-    
+
     divErro.innerText = msg;
     divErro.classList.add('error-modal');
 
