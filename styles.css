@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    height: 100vh;
+    display: flex;
+}
+
+.div_image {
+    flex: 1;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(#359B74, #2F998D, #319BA0, #38A0CF) ;
+}
+.login_titulo{
+    font-size: 50px;
+    flex:wrap;
+    border: none;
+    container:initial;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 30px;
+
+}
+.div_form {
+    flex: 1;
+    align-items: center ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    border: none;
+    background-color: beige;
+}
+.div_login{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+.caixa{
+    width: 400px;
+    height: 600px;
+    border-color: #2F998D;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+.titulo_caixa{
+    text-align: left;
+    padding-bottom: 30px;
+}
+.subtitulo_caixa{
+    text-align: left;
+}
+.titulo_email{
+    padding-top: 30px;
+    text-align: left;
+}
+.titulo_senha{
+    padding-top:  10px;
+    text-align: left;
+}
+
+button{
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(#359B74, #2F998D, #319BA0, #38A0CF) ;
+}
+
+.div_input{
+    text-align: left;
+    padding-left: 30px;
+}
+
