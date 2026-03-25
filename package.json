@@ -1,0 +1,25 @@
+{
+  "name": "projeto_refatorado",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro-alves16/INFOLIGHT_REFATORADA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedro-alves16/INFOLIGHT_REFATORADA/issues"
+  },
+  "homepage": "https://github.com/pedro-alves16/INFOLIGHT_REFATORADA#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
