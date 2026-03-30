@@ -1,0 +1,25 @@
+[
+  {
+    "userName": "admin",
+    "email": "admin@gmail.com",
+    "senha": "admin123"
+  },
+  {
+    "id": 1774893703639,
+    "userName": "teste",
+    "email": "teste@email.com",
+    "password": "12345"
+  },
+  {
+    "id": 1774894020996,
+    "userName": "pedro",
+    "email": "pernesto822@gmail.com",
+    "password": "111234"
+  },
+  {
+    "id": 1774900558474,
+    "userName": "",
+    "email": "",
+    "password": ""
+  }
+]

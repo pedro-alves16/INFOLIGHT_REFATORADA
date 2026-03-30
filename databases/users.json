@@ -1,5 +1,0 @@
-const users = [
-    {
-        nome: 'Pedro',
-    }
-]
