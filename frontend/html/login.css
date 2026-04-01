@@ -104,12 +104,9 @@ label{
     border-color: black;
     background-color: #e3e6e3;
     padding: 0.5rem;
-    border-radius: 18px;
+    border-radius: 8px;
     border: 1px solid grey;
     min-width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
 
 }
