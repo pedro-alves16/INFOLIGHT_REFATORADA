@@ -40,11 +40,10 @@ body {
 }
 
 .div_form {
-
+    flex-direction: column;
     flex: 1;
     align-items: center;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -59,7 +58,7 @@ body {
 
 .caixa {
     width: 23rem;
-    height: 30rem;
+    height: 37rem;
     border-color: #2F998D;
     background-color: #ffffff;
     padding: 20px;
@@ -72,13 +71,6 @@ body {
 
 }
 
-.titulo_caixa {
-    text-align: left;
-}
-
-.subtitulo_caixa {
-    text-align: left;
-}
 
 button {
     width: 250px;
@@ -113,7 +105,7 @@ label {
     border: 3px;
     background-color: #e3e6e3;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 16px;
     border: 1px solid grey;
     min-width: 90%;
     display: flex;
@@ -147,30 +139,34 @@ input {
     background-color: #e3e6e3;
     color: black;
     font-weight: 700;
-    font-family:"plus jakarta sans";
+    font-family: "plus jakarta sans";
     text-align: center;
     justify-content: center;
     display: flex;
-}
- img{
-    margin-right: 0.5rem;
- }
 
- a {
+
+}
+
+a {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: black;
- }
- .titulo_fora{
-   font-family:"plus jakarta sans";
-   font-size: larger;  
-   font-weight: 700;
-   display: flex;
+}
 
- }
+.titulo_fora {
+    font-family: "plus jakarta sans";
+    font-size: larger;
+    font-weight: 700;
+    display: flex;
 
- .icones {
+}
+
+img {
+    margin-right: 0.5rem;
+}
+
+.icones {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -207,16 +203,6 @@ input {
 .sol {
     animation: float 5s ease-in-out infinite;
 }
-.raio_fora{
-    display: flex;
-    justify-content: left;
-    align-items: left;
-}
-
-.input_div {
-    display:flex;
-    flex-direction: column;
-}
 
 .error_msg {
     color: red;
@@ -224,6 +210,6 @@ input {
 
 .header {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }

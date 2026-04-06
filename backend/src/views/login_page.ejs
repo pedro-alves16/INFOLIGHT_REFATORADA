@@ -4,55 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>CADASTRO</title>
 </head>
 
 <body>
     <div class="div_image">
-        <div class="icones"><img src="" alt=""><img src="" alt=""><img src="" alt=""></div>
+        
+        <div class="flutuar">
+            <div class="icones"><img src="/assets/raio2.png" height="100" width="140" class="raio"><img src="/assets/folha2.png" height="90" width="120" class="folha"><img src="/assets/sol 2.png" height="90" width="120" class="sol">
+            </div>
+        </div>
+
+        
         <h1 class="login_titulo">Pequenas ações podem economizar muita energia.</h1>
         <p class="login_subtittulo">Junte-se à plataforma InfoLight FOA e aprenda a fazer a diferença no consumo
             consciente de energia.</p>
     </div>
     <div class="div_form">
-        <label for="">Nome:
-            <input type="text" name="userName" id="input_nome">
-        </label>
 
-        <label for="">Email:
-            <input type="email" name="email" id="input_email">
-        </label>
-
-        <label for="">Senha:
-            <input type="password"  name="password" id="input_password">
-        </label>
-
-        <button id="botao_cadastro">criar conta</button>
-        <!--
-        <form action="" class="formulario">
-            <div class="div_login">
-                <div class="caixa">
+        <div class="header">
+            <img src="/assets/imagem_verde_raio.png" height="110px" width="110px">
+            <div class="titulo_fora">
+                <p>InfoLight FOA</p>
+            </div>
+        </div>
+        
+        <div class="div_login">
+            <div class="caixa">
+                <div class="text">
                     <h1 class="titulo_caixa">Log-in</h1>
                     <p class="subtitulo_caixa">Acesse a plataforma InfoLight</p>
-                    <p class="titulo_email">E-mail</p>
-                    <div class="div_input">
-                        <input type="email" class="input_email">
+                </div>
+                
+                <div class="input_div">
+                    <p>Nome:</p>
+                    <div class="caixinha_mail">
+                            <img src="/assets/456212.png" height="20px" width="25px">
+                            <input type="username" placeholder="Digite seu nome aqui" name="userName" id="input_nome">
                     </div>
+                    <p class="error_msg" style = 'display: none'>Digite um usuário válido</p>
+                </div>
 
-                    <p class="titulo_senha">Senha</p>
-                    <div class="div_input_pass">
-                        <input type="password" class="input_senha">
+                <div class="input_div">
+                    <p>E-mail:</p>
+                    <div class="caixinha_mail">
+                        <img src="/assets/R (1).png" height="20px" width="25px">
+                        <input type="email" placeholder="exemplo123@gmail.com" name="email" id="input_email">
                     </div>
-                    <button class="botao_entra">Entra</button>
+                    <p class="error_msg" style = 'display: none'>Digite um Email válido</p>
+                </div>
+
+                <div class="input_div">
+                    <p>Senha:</p>
+                    <div class="caixinha_mail">
+                        <img src="/assets/R.png" height="20px" width="25px">
+                        <input type="password" placeholder="123456" name="password" id="input_password">
+                    </div>
+                    <p class="error_msg" style = 'display: none'>Digite uma Senha válida</p>
+
+                </div>
+
+                <button class="botao" id="botao_cadastro">Criar Conta</button>
+                <div class="criar_conta">
+                    <a href="/users/login">Já tenho conta</a>
                 </div>
             </div>
-        </form>
-        -->
-        
-        <a href="/users/login">entrar em uma conta existente</a>
+        </div>
     </div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="/js/formActionCadastro.js"></script>
 </body>
 

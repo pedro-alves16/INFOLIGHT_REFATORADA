@@ -16,6 +16,15 @@ export function getUsers() { //lê os dados do meu json
 export function createUsers(user) {
     const data = getUsers();
 
+    const existingUser = data.find( dataUser => dataUser.email === user.email);
+
+    if (existingUser) {
+        return {
+            existingUserName: user.userName,
+            error: `o usuário ${user.userName} já existe, por favor faça login!`
+        }
+    }
+
     const newUser = {
         id: Date.now(),
         ...user

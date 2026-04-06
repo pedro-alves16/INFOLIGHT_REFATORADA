@@ -1,7 +1,9 @@
+
 import { getUsers, createUsers } from "../model/userModel.js";
 
 export function storeuser(req, res) {
     const newUser = createUsers(req.body);
+    console.log(newUser);
 
     res.status(201).json(newUser);
 }
@@ -19,21 +21,30 @@ export function connectUser(req, res) {
     console.log('senha:', senha)
 
     const usuario = data.find(user => user.email === email);
+
+    if(!usuario) {
+        return res.json({
+            error: true,
+            userEmail: email
+        })
+    }
+
     console.log('usuario achado:', usuario)
 
-    const userName = usuario.userName;
 
     if (senha === usuario.password) {
         console.log('caiu no if');
-        res.json({ userName: usuario.userName });
-        return;
+        return res.json({ usuario: usuario, userName: usuario.userName });
     }
 
     console.log('erro');
 }
 
 export function showDashboard(req, res) {
+    const userId = req.query.id;
     const userName = req.query.user;
+    console.log(userId)
 
-    res.render('dashboard', { userName });
+
+    res.render('dashboard', { userId, userName });
 }
