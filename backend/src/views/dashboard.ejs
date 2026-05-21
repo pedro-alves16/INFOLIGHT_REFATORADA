@@ -1,62 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dashboard.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <%- include('./includes/sidebar.ejs')%>
 
-        <div class="content">
-            <%- include('./includes/header.ejs')%>
+    <div class="content">
+      <%- include('./includes/header.ejs')%>
 
-                <main>
-                    <div class="main-div">
-                        <div class="text-div">
-                            <h1>Bem-vindo à sua dashboard!</h1>
-                            <p>Este é o resumo de seus dados.</p>
-                        </div>
-                        <div class="graph">
-                            <div class="text-div-graph">
-                                <h1>EVOLUÇÃO DA CONTA DE ENERGIA</h1>
-                                <p>acompanhe seus custos e consumo mensal</p>
-                            </div>
+      <main>
+        <div class="main-div">
+          <div class="text-div">
+            <h1>Bem-vindo à sua dashboard!</h1>
+            <p>Este é o resumo de seus dados.</p>
+          </div>
+          <div class="graph">
+            <div class="text-div-graph">
+              <h1>EVOLUÇÃO DA CONTA DE ENERGIA</h1>
+              <p>acompanhe seus custos e consumo mensal</p>
+            </div>
 
-                            <canvas id="meuGrafico"></canvas>
-
-                        </div>
-
-                    </div>
-                </main>
+            <canvas id="meuGrafico"></canvas>
+          </div>
         </div>
+      </main>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById("meuGrafico");
 
-            const ctx = document.getElementById('meuGrafico');
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
-                    datasets: [{
-                        label: 'Conta de Luz (R$)',
-                        data: [120, 150, 130, 170, 160], 
-                        borderWidth: 2,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        </script>
-</body>
-
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Jan", "Fev", "Mar", "Abr", "Mai"],
+          datasets: [
+            {
+              label: "Conta de Luz (R$)",
+              data: [120, 150, 130, 170, 160],
+              borderWidth: 2,
+              tension: 0.3,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+    </script>
+  </body>
 </html>
