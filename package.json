@@ -23,6 +23,14 @@
   "dependencies": {
     "ejs": "^5.0.1",
     "express": "^5.2.1",
-    "nodemon": "^3.1.14"
+    "mysql2": "^3.22.3",
+    "nodemon": "^3.1.14",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^1.0.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.1"
   }
 }
