@@ -8,6 +8,10 @@
     
 }
 
+.card-centered h1{
+    font-size: 10px;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -228,8 +232,21 @@ html, body{
 
 .card-centered{
     background-color: #ffffff; 
-    flex: 1 1 200px;
-    padding: 1.5rem 1.5rem;
+    width: 250px;
+    height: 480px;
+    text-align: center;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-centered-end{
+    background-color: #ffffff; 
+    width: 500px;
+    padding: 20px;
+    height: 650px;
     text-align: center;
     border-radius: 16px;
     display: flex;
@@ -246,7 +263,7 @@ html, body{
 }
 
 .card-title-centered {
-    font-weight: 600;
+    font-weight: 750;
     font-size: 1rem;
     font-family: var(--fonte-titulos);
 
@@ -748,7 +765,7 @@ html, body{
     .card-title-centered.green,
     .card-title-centered.red,
     .card-title-centered.blue {
-        font-size: 5rem;
+        font-size: 72px;
     }
 
     .card-text-centered {
