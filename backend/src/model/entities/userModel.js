@@ -3,14 +3,14 @@ import { EntitySchema } from "typeorm";
 export class User {
   constructor(usuario) {
     if (usuario) {
-      this.username = usuario.username;
+      this.userName = usuario.userName;
       this.email = usuario.email;
       this.password = usuario.password;
     }
   }
 }
 
-export default new EntitySchema({
+export const userSchema = new EntitySchema({
   name: "User",
   target: User,
   tableName: "users",
@@ -21,7 +21,7 @@ export default new EntitySchema({
       generated: true,
     },
 
-    username: {
+    userName: {
       type: "varchar",
     },
 
