@@ -21,6 +21,7 @@
   "homepage": "https://github.com/pedro-alves16/INFOLIGHT_REFATORADA#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
     "mysql2": "^3.22.3",
