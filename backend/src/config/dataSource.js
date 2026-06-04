@@ -6,8 +6,11 @@ dotenv.config();
 
 const dataSource = new typeorm.DataSource({
   type: "postgres",
-  url: process.env.DB_PASSWORD,
+  url: process.env.DATABASE_URL,
   synchronize: true,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   entities: [userSchema],
 });
 

@@ -23,8 +23,14 @@ app.use(userRouter);
 
 try {
   await dataSource.initialize();
+
+  console.log("Banco conectado!");
+  console.log(
+    "Entidades:",
+    dataSource.entityMetadatas.map((e) => e.name),
+  );
 } catch (error) {
-  console.log(error);
+  console.error(error);
 }
 
 app.listen(3000, () => {
