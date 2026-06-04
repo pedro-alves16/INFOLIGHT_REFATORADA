@@ -1,13 +1,12 @@
 import typeorm from "typeorm";
 import { userSchema } from "../model/entities/userModel.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const dataSource = new typeorm.DataSource({
   type: "postgres",
-  host: "127.0.0.1",
-  port: 5432,
-  username: "postgres",
-  password: "pedroDev1616",
-  database: "usuarios_DB",
+  url: process.env.DB_PASSWORD,
   synchronize: true,
   entities: [userSchema],
 });
