@@ -30,6 +30,12 @@ userRouter.post("/users/login", async (req, res) => {
   }
 
   if (userCredentials.password === userFromDatabase.password) {
+    req.session.user = {
+      id: userFromDatabase.id,
+      nome: userFromDatabase.userName,
+      email: userFromDatabase.email,
+    };
+
     return res.status(200).json({
       userName: userFromDatabase.userName,
       canLoggin: true,
@@ -43,7 +49,9 @@ userRouter.post("/users/login", async (req, res) => {
 
 userRouter.get("/users/dashboard", (req, res) => {
   const userQuery = req.query.user;
+
   console.log(`query param:' ${userQuery} `);
-  res.render("dashboard", { userName: userQuery });
+
+  res.render("dashboard", { userName: req.session.user.nome });
 });
 export default userRouter;

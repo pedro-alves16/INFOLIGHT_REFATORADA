@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { dataSource } from "./backend/src/config/dataSource.js";
 import dotenv from "dotenv";
+import session from "express-session";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +19,16 @@ app.use(express.static(path.resolve(__dirname, "frontend")));
 app.set("views", "./backend/src/views");
 app.set("view engine", "ejs");
 
+app.use(
+  session({
+    secret: "infolight_cookie_pass",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  }),
+);
 app.use(router);
 app.use(userRouter);
 

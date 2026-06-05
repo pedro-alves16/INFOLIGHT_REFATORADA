@@ -3,6 +3,7 @@ import { userSchema } from "../model/entities/userModel.js";
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log(process.env.DATABASE_URL);
 
 const dataSource = new typeorm.DataSource({
   type: "postgres",
