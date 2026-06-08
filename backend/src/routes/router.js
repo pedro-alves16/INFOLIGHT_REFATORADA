@@ -19,4 +19,8 @@ router.get("/", (req, res) => {
 
 router.get("/users/login", renderLoginPage);
 
+router.get("/users/perfil", (req, res) => {
+  res.render("update_profile", { user: req.session.user });
+});
+
 export default router;

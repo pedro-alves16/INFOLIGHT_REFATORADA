@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/update_profile.css">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <%- include('./includes/sidebar.ejs')%>
+
+    <div class="content">
+      <%- include('./includes/header.ejs')%>
+
+      <main>
+        <div class="main-div">
+          <div class="text-div">
+            <h1>Minha Conta</h1>
+            <p>Gerencie suas informações de perfil e segurança.</p>
+          </div>
+
+          <!-- Profile Information -->
+          <div class="card">
+            <div class="card-title">Informações do Perfil</div>
+            <div class="field">
+              <label class="field-label" for="fullName">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+                Nome Completo
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                placeholder="João Silva"
+                autocomplete="name"
+                value= "<%= user.nome %>"
+              />
+            </div>
+            <div class="field">
+              <label class="field-label" for="email">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M2 8l10 6 10-6" />
+                </svg>
+                E-mail
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="joao@exemplo.com"
+                autocomplete="email"
+                value= "<%= user.email %>"
+
+              />
+            </div>
+            <button class="btn-teal" id="btnSaveProfile">
+              <svg
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12l5 5L20 7" />
+              </svg>
+              Salvar Alterações
+            </button>
+          </div>
+
+          <!-- Change Password -->
+          <div class="card">
+            <div class="card-title">Alterar Senha</div>
+            <div class="field">
+              <label class="field-label" for="currentPassword">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="5" y="11" width="14" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+                Senha Atual
+              </label>
+              <input
+                type="password"
+                id="currentPassword"
+                name="currentPassword"
+                autocomplete="current-password"
+              />
+            </div>
+            <div class="field">
+              <label class="field-label" for="newPassword">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="5" y="11" width="14" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+                Nova Senha
+              </label>
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                autocomplete="new-password"
+              />
+            </div>
+            <button class="btn-outline" id="btnUpdatePassword">
+              Atualizar Senha
+            </button>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="card">
+            <div class="danger-zone-title">Zona de Perigo</div>
+            <div class="danger-zone-desc">
+              Uma vez que você excluir sua conta, não há como voltar atrás.
+              Tenha certeza.
+            </div>
+            <button class="btn-danger" id="btnDeleteAccount">
+              <svg
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                viewBox="0 0 24 24"
+              >
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                <path d="M10 11v6M14 11v6" />
+                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+              </svg>
+              Excluir Conta
+            </button>
+          </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/update_profile.js"></script>
+  </body>
+</html>

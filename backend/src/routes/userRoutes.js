@@ -50,8 +50,43 @@ userRouter.post("/users/login", async (req, res) => {
 userRouter.get("/users/dashboard", (req, res) => {
   const userQuery = req.query.user;
 
-  console.log(`query param:' ${userQuery} `);
+  console.log(req.session);
 
-  res.render("dashboard", { userName: req.session.user.nome });
+  res.render("dashboard", { user: req.session.user });
+});
+
+userRouter.put("/users/update", async (req, res) => {
+  const usuarioAtualizado = {
+    userName: req.body.userName,
+    email: req.body.email,
+  };
+  const userRepository = dataSource.getRepository(userSchema);
+  const user = await userRepository.findOneBy({ id: res.locals.user.id });
+  userRepository.merge(user, usuarioAtualizado);
+  const results = await userRepository.save(user);
+  res.json({ message: "usuario atualizado!" });
+});
+
+userRouter.put("/users/password", async (req, res) => {
+  const userRepository = dataSource.getRepository(userSchema);
+
+  const senhas = {
+    senhaAntiga: req.body.senhaAntiga,
+    senhaNova: req.body.senhaNova,
+  };
+
+  const user = await userRepository.findOneBy({ id: res.locals.user.id });
+  if (user.password === senhas.senhaAntiga) {
+    userRepository.merge(user, { password: senhas.senhaNova });
+    const results = await userRepository.save(user);
+    res.json({
+      message: "senha alterada com sucesso!",
+    });
+  } else {
+    res.json({
+      message: "senha não alterada, algo deu errado!",
+    });
+    return;
+  }
 });
 export default userRouter;

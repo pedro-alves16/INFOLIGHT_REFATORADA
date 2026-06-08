@@ -1,0 +1,191 @@
+/* ================================================
+   update_profile.css
+   Escopo: apenas os elementos internos do <main>
+   da página de perfil. Sidebar e header já estão
+   cobertos pelo dashboard.css.
+   ================================================ */
+
+/* --- Card --- */
+.card {
+  background-color: var(--branco-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  width: 100%;
+  max-width: 620px;
+  margin-top: 1rem;
+}
+
+.card-title {
+  font-family: var(--fonte-titulos);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cor-texto-principal);
+  margin-bottom: 1.25rem;
+}
+
+/* --- Campo --- */
+.field {
+  margin-bottom: 1.125rem;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--cor-texto-principal);
+  margin-bottom: 0.5rem;
+}
+
+.field-label svg {
+  color: var(--cor-texto-secundario);
+  flex-shrink: 0;
+}
+
+.field input {
+  width: 100%;
+  background-color: var(--cor-fundo-geral);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  font-family: var(--fonte-corpo);
+  font-size: 0.9rem;
+  color: var(--cor-texto-principal);
+  outline: none;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    background-color 0.18s;
+}
+
+.field input::placeholder {
+  color: #a5b3ac;
+}
+
+.field input:focus {
+  border-color: var(--verde-destaque);
+  box-shadow: 0 0 0 3px rgba(44, 155, 107, 0.12);
+  background-color: var(--branco-fundo);
+}
+
+/* --- Botões --- */
+.btn-teal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--verde-destaque);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--fonte-corpo);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    background-color 0.18s,
+    box-shadow 0.18s,
+    transform 0.1s;
+}
+
+.btn-teal:hover {
+  background-color: #237d56;
+  box-shadow: 0 4px 12px rgba(44, 155, 107, 0.25);
+}
+
+.btn-teal:active {
+  transform: scale(0.97);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: transparent;
+  color: var(--cor-texto-principal);
+  border: 1.5px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--fonte-corpo);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    background-color 0.18s,
+    border-color 0.18s;
+}
+
+.btn-outline:hover {
+  background-color: var(--cor-fundo-geral);
+  border-color: #b0bdb5;
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: transparent;
+  color: #e63946;
+  border: 1.5px solid #f5bcbf;
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--fonte-corpo);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    background-color 0.18s,
+    border-color 0.18s;
+}
+
+.btn-danger:hover {
+  background-color: #fff0f1;
+  border-color: #e63946;
+}
+
+/* --- Danger Zone --- */
+.danger-zone-title {
+  font-family: var(--fonte-titulos);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e63946;
+  margin-bottom: 0.35rem;
+}
+
+.danger-zone-desc {
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 1.125rem;
+}
+
+/* --- Toast --- */
+.toast {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--cor-texto-principal);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.75rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  z-index: 999;
+  white-space: nowrap;
+}
+
+.toast.show {
+  display: flex;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast svg {
+  color: var(--verde-destaque);
+  flex-shrink: 0;
+}

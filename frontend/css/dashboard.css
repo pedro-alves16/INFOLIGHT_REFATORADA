@@ -20,7 +20,7 @@
 
 body,
 html {
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
   font-family: "DM Sans,", sans-serif;
 }
@@ -78,6 +78,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 header {
@@ -103,8 +104,9 @@ button {
 main {
   flex: 1;
   background-color: #f6f9f7;
+  overflow-y: auto; /* adiciona scroll vertical no main */
+  height: 0; /* força o flex item a respeitar o espaço disponível */
 }
-
 .text-div {
   margin: 1rem 0 0 1rem;
   text-align: start;
