@@ -73,8 +73,11 @@ userRouter.put("/users/update", async (req, res) => {
     email: req.body.email,
   };
   const userRepository = dataSource.getRepository(userSchema);
+
   const user = await userRepository.findOneBy({ id: res.locals.user.id });
+
   userRepository.merge(user, usuarioAtualizado);
+
   const results = await userRepository.save(user);
   res.json({ message: "usuario atualizado!" });
 });
@@ -96,9 +99,28 @@ userRouter.put("/users/password", async (req, res) => {
     });
   } else {
     res.json({
-      message: "senha não alterada, algo deu errado!",
+      error: "senha não alterada, algo deu errado!",
     });
     return;
   }
+});
+
+userRouter.delete("/users/delete", async (req, res) => {
+  const userRepository = dataSource.getRepository(userSchema);
+
+  const userPass = req.body.senha;
+
+  const user = await userRepository.findOneBy({ id: res.locals.user.id });
+
+  if (!user) {
+    return res.json({ error: "usuário não encontrado!" });
+  }
+
+  if (user.password === userPass) {
+    await userRepository.delete(user.id);
+    return res.json({ message: "usuario deletado!" });
+  }
+
+  return res.json({ error: "senha incorreta, tente novamente!" });
 });
 export default userRouter;

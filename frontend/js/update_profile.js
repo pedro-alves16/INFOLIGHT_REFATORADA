@@ -1,5 +1,6 @@
 const botaoAtualizarPerfil = document.getElementById("btnSaveProfile");
 const botaoAtualizarSenha = document.getElementById("btnUpdatePassword");
+const botaoDeleta = document.getElementById("btnDeleteAccount");
 
 botaoAtualizarPerfil.addEventListener("click", async (e) => {
   const inputNome = document.getElementById("fullName");
@@ -10,6 +11,10 @@ botaoAtualizarPerfil.addEventListener("click", async (e) => {
     email: inputEmail.value,
   });
 
+  if (!res.data.error) {
+    alert("usuario atualizado com sucesso!");
+    return;
+  }
   console.log("novo usuario", res.data);
 });
 
@@ -21,4 +26,25 @@ botaoAtualizarSenha.addEventListener("click", async (e) => {
     senhaAntiga: inputSenhaAtual.value,
     senhaNova: inputSenhaNova.value,
   });
+
+  if (!res.data.error) {
+    alert("Senha Alterada com sucesso!");
+    return;
+  }
+});
+
+botaoDeleta.addEventListener("click", async (e) => {
+  const inputSenhaDeletar = document.getElementById("currentPasswordDelete");
+
+  const res = await axios.delete("/users/delete", {
+    data: { senha: inputSenhaDeletar.value },
+  });
+
+  if (!res.data.error) {
+    alert("conta deletada com sucesso!");
+  } else {
+    alert("algo deu errado, tente novamente!");
+  }
+
+  window.location.href = "/";
 });
