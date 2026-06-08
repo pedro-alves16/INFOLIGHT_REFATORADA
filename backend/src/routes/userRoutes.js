@@ -8,6 +8,13 @@ const userRouter = express.Router();
 userRouter.post("/users/create", async (req, res) => {
   const userRepository = dataSource.getRepository(userSchema);
 
+  const hasUser = await userRepository.findOneBy({ email: req.body.email });
+
+  if (hasUser) {
+    res.json({ error: "usuário já cadastrado, faça Login!" });
+    return;
+  }
+
   const user = await userRepository.create(req.body);
   const result = await userRepository.save(user);
   return res.send(result);
@@ -24,7 +31,12 @@ userRouter.post("/users/login", async (req, res) => {
   });
 
   if (!userFromDatabase) {
-    return res.status(401).json({
+    console.log(userFromDatabase);
+    return res.json({ error: "usuário não cadastrado, crie sua conta!" });
+  }
+
+  if (!userFromDatabase) {
+    return res.json({
       error: "Usuário não encontrado",
     });
   }
@@ -42,7 +54,7 @@ userRouter.post("/users/login", async (req, res) => {
     });
   }
 
-  return res.status(401).json({
+  return res.json({
     error: "Senha incorreta",
   });
 });
