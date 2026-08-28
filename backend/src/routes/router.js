@@ -20,7 +20,8 @@ router.get("/", (req, res) => {
 router.get("/users/login", renderLoginPage);
 
 router.get("/users/perfil", (req, res) => {
-  res.render("update_profile", { user: req.session.user });
+  const currentUser = req.session.user || { nome: "Visitante" };
+  res.render("update_profile", { user: currentUser });
 });
 
 export default router;
