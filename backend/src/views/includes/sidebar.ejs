@@ -1,28 +1,37 @@
 <aside class="sidebar">
   <div class="sidebar-header">
-    <p>INFOLIGHT</p>
+    <div class="brand-mark">IL</div>
+    <div class="brand-copy">
+      <strong>INFOLIGHT</strong>
+      <span>gestão inteligente</span>
+    </div>
   </div>
   <nav class="links-nav">
-    <a href="/users/dashboard">
+    <p class="nav-label">Visão geral</p>
+    <a class="is-active" href="/users/dashboard" aria-current="page">
       <img src="../assets/trello (4).svg" alt="" />
       Dashboard
     </a>
     <a href="/unidadesConsumo">
-      <img src="../assets/trello (4).svg" alt="" />
+      <img src="../assets/bar_chart_32dp_2C9664_FILL0_wght400_GRAD0_opsz40.svg" alt="" />
       Unidades de consumo
     </a>
-    <a href="/users/perfil?id=<%-user.id%>">
-      <img src="../assets/trello (4).svg" alt="" />
+    <a href="/users/perfil<% if (user) { %>?id=<%-user.id%><% } %>">
+      <img src="../assets/lightbulb_32dp_2C9664_FILL0_wght400_GRAD0_opsz40.svg" alt="" />
       Minha Conta
     </a>
+    <p class="nav-label nav-label-secondary">Atalhos</p>
     <a href="/">
-      <img src="../assets/trello (4).svg" alt="" />
+      <img src="../assets/eco_32dp_2C9664_FILL0_wght400_GRAD0_opsz40.svg" alt="" />
       Home
     </a>
   </nav>
 
   <div class="sidebar-footer">
     <img src="../assets/log-out (2).svg" alt="" />
-    <p>INFOLIGHT</p>
+    <div>
+      <strong>INFOLIGHT</strong>
+      <span>Energia sob controle</span>
+    </div>
   </div>
 </aside>

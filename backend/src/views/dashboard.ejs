@@ -16,8 +16,37 @@
       <main>
         <div class="main-div">
           <div class="text-div">
-            <h1>Bem-vindo à sua dashboard!</h1>
-            <p>Este é o resumo de seus dados.</p>
+            <p class="eyebrow">PAINEL DE CONTROLE</p>
+            <h1>Bem-vindo à sua dashboard</h1>
+            <p>Uma visão simples para acompanhar o consumo e os custos da sua energia.</p>
+          </div>
+
+          <section class="summary-grid" aria-label="Resumo do consumo">
+            <article class="summary-card summary-card-primary">
+              <span class="summary-icon">R$</span>
+              <div>
+                <p>Última conta</p>
+                <strong>R$ 160,00</strong>
+                <small>+4,2% neste mês</small>
+              </div>
+            </article>
+            <article class="summary-card">
+              <span class="summary-icon summary-icon-blue">kWh</span>
+              <div>
+                <p>Consumo médio</p>
+                <strong>218 kWh</strong>
+                <small>média dos últimos 5 meses</small>
+              </div>
+            </article>
+            <article class="summary-card">
+              <span class="summary-icon summary-icon-yellow">%</span>
+              <div>
+                <p>Economia estimada</p>
+                <strong>12,8%</strong>
+                <small>comparado ao período anterior</small>
+              </div>
+            </article>
+          </section>
           </div>
           <div class="graph">
             <div class="text-div-graph">
@@ -72,14 +101,25 @@
             {
               label: "Conta de Luz (R$)",
               data: [120, 150, 130, 170, 160],
-              borderWidth: 2,
-              tension: 0.3,
+              backgroundColor: "rgba(44, 155, 107, 0.78)",
+              borderColor: "#2c9b6b",
+              borderRadius: 6,
+              borderWidth: 1,
             },
           ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: { color: "#687872", usePointStyle: true, padding: 18 },
+            },
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: "#687872" } },
+            y: { beginAtZero: true, grid: { color: "#e6eee9" }, ticks: { color: "#687872" } },
+          },
         },
       });
     </script>
