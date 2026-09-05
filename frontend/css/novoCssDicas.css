@@ -78,7 +78,7 @@ html, body{
             rgba(224, 242, 233, 0.7),
             rgba(223, 240, 249, 0.7)
         ),
-    url('/assets/hero-bg.jpg');
+    url('/assets/ChatGPT Imagem de fundo.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -180,7 +180,7 @@ html, body{
 }
 
 .card-icon-yellow {
-    background-color: rgb(255, 247, 209);
+    background-color: #FBF3DC;
     width: fit-content;
     padding: 1rem;
     border-radius: 16px;
@@ -281,7 +281,7 @@ html, body{
 
 .card-title-centered.yellow {
     color: #f6c123;
-    font-size: 20px;
+    font-size: 3rem;
     font-weight: 800;
     margin-top: 1.5rem;
 }
@@ -678,7 +678,6 @@ html, body{
     .card {
         padding: 4rem 2rem;
         max-width: 400px;
-        max-height: 550px;
     }
 
     .card-title {
@@ -766,7 +765,7 @@ html, body{
     .card-title-centered.green,
     .card-title-centered.red,
     .card-title-centered.blue {
-        font-size: 60px;
+        font-size: 72px;
     }
 
     .card-text-centered {
