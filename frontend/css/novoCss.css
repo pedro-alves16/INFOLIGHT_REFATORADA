@@ -243,6 +243,230 @@ html, body{
 }
 
 .card-centered-end{
+    background-color: #F6F9F7; 
+    width: 1000px;
+    padding: 20px;
+    height: 650px;
+    text-align: center;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-centered-final{
+    background-color: #F6F9F7;
+    display: flex;  
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.card-aling-right{
+    background-color: #F6F9F7;
+    padding: 50px;
+    width: 600px;
+    height: 560px;
+    border-radius: 10px;
+    margin-right: 40px;
+    margin-top: 80px;
+}
+
+.card-aling-left{
+    background-color: #F6F9F7;
+    padding: 30px;
+    width: 490px;
+    height: 600px;
+    margin-top: 80px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 85px;
+    box-shadow: 5px 5px 15px  #36996b56,  /* sombra azul */
+    -5px -5px 15px rgba(44, 146, 172, 0.24);
+}
+
+.card-text-end{
+    font-size: 26px;
+    text-align: center;
+    color: #687872;
+}
+
+.text-end{
+    font-size: 35px;
+    margin-top: 15px;
+    display: flex;
+    margin-left: 30px;
+}
+
+.text-end-2{
+    font-size: 35px;
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.card-image-end{
+    background-color: #2c966436;
+    width: fit-content;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.final-part{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(224, 242, 233, 0.7),
+            rgba(223, 240, 249, 0.7)
+        ),
+    url('/assets/hero-energia.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    
+}
+
+.div-final-part{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    width: 1400px;
+    margin-top: 10px;
+}
+
+.final-part-titulo{
+    font-size: 45px;
+    text-align: center;
+}
+
+.div-final-part-titulo{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    padding: 50px;
+    width: 1000px;
+}
+
+.text-final-part{
+    font-size: 25px;
+    width: 1500px;
+    text-align: center;
+}
+
+.final-part-button{
+    padding: 15px;
+    width: 200px;
+    font-size: 20px;
+    margin-top: 70px;
+    border-radius: 25px;
+    border-color: #2C9664;
+    background-color: #6acdff;
+    color: #012436;
+}
+
+.final-part-button-link{
+    text-decoration: none;
+    color: #012436;
+}
+
+.sessao-extra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.text-sessao-extra{
+    font-size: 75px;
+    margin-top: 90px;
+    margin-bottom: 60px;
+    color: var(--cor-texto-principal);
+}
+
+.info-sessao-extra{
+    font-size: 28px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 50px;
+    color: #687872
+}
+
+.divs-info-sessao-extra{
+    display: flex;
+    justify-content: space-around;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.icon-info{
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #b9b9b97a;
+    background-color: #eef2f37a;
+    margin-bottom: 12px;
+}
+
+.divs-info{
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 5px;
+    width: 350px;
+    height: 150px;
+    margin-top: 40px;
+}
+
+.titulo-divs-info{
+    font-size: 30px;
+    color: #012436;
+}
+
+.text-divs{
+    margin-top: 20px;
+    font-size: 20px;
+    color: #393f3d
+}
+
+.cards-list-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.card-centered{
+    background-color: #ffffff; 
+    width: 250px;
+    height: 480px;
+    text-align: center;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-centered-end{
     background-color: #ffffff; 
     width: 500px;
     padding: 20px;
@@ -389,6 +613,8 @@ html, body{
     color: var(--cor-texto-principal);
     text-align: center;
 }
+
+
 
 .rodape {
     text-align: center;
@@ -765,7 +991,7 @@ html, body{
     .card-title-centered.green,
     .card-title-centered.red,
     .card-title-centered.blue {
-        font-size: 72px;
+        font-size: 53px;
     }
 
     .card-text-centered {
