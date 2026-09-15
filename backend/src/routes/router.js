@@ -1,11 +1,6 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath, pathToFileURL } from "url";
-import {
-  renderCreatePage,
-  renderLoginPage,
-} from "../controllers/logincontroller.js";
-
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
 
@@ -31,9 +26,13 @@ viewRouter.get("/users/cadastro", (req, res) => {
 viewRouter.get("/users/dashboard", (req, res) => {
   res.sendFile(path.join(htmlPath, "dashboard.html"));
 });
+
+viewRouter.get("/unidadesConsumo", (req, res) => {
+  res.sendFile(path.join(htmlPath, "unidades de consumo.html"));
+});
+
 viewRouter.get("/users/perfil", (req, res) => {
-  const currentUser = req.session.user || { nome: "Visitante" };
-  res.render("update_profile", { user: currentUser });
+  res.sendFile(path.join(htmlPath, "update_profile.html"));
 });
 
 export default viewRouter;

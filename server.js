@@ -1,6 +1,6 @@
 import express from "express";
 import viewRouter from "./backend/src/routes/router.js";
-import userRouter from "./backend/src/routes/userRoutes.js";
+import userRouter from "./backend/src/routes/userRoutes.routes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dataSource } from "./backend/src/config/dataSource.js";

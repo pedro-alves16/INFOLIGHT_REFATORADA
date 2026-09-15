@@ -60,15 +60,6 @@ userRouter.post("/users/login", async (req, res) => {
   });
 });
 
-userRouter.get("/users/dashboard", (req, res) => {
-  const userQuery = req.query.user;
-
-  console.log(req.session);
-
-  const currentUser = req.session.user || { nome: "Visitante" };
-  res.render("dashboard", { user: currentUser });
-});
-
 userRouter.put("/users/update", async (req, res) => {
   const usuarioAtualizado = {
     userName: req.body.userName,

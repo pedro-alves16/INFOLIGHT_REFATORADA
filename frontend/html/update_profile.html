@@ -9,11 +9,9 @@
   </head>
 
   <body>
-    <%- include('./includes/sidebar.ejs')%>
-
+    <div id="sidebar-container"></div>
     <div class="content">
-      <%- include('./includes/header.ejs')%>
-
+        <div id="header-container"></div>
       <main>
         <div class="main-div">
           <div class="text-div">
@@ -45,7 +43,7 @@
                 name="fullName"
                 placeholder="João Silva"
                 autocomplete="name"
-                value= "<%= user.nome %>"
+                value= ""
               />
             </div>
             <div class="field">
@@ -69,7 +67,7 @@
                 name="email"
                 placeholder="joao@exemplo.com"
                 autocomplete="email"
-                value= "<%= user.email %>"
+                value= ""
 
               />
             </div>
@@ -191,8 +189,8 @@
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/componentRender.js" type="module"></script>
     <script src="/js/update_profile.js"></script>
   </body>
 </html>
