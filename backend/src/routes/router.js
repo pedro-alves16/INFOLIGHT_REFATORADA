@@ -9,19 +9,31 @@ import {
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
 
-const router = express.Router();
+const viewRouter = express.Router();
 
-router.get("/cadastro", renderCreatePage);
+const htmlPath = path.resolve(_dirname, "../../../frontend/html");
 
-router.get("/", (req, res) => {
-  res.sendFile(path.resolve(_dirname, "../../../frontend/html/index.html"));
+//renderizando index (homepage)
+viewRouter.get("/", (req, res) => {
+  res.sendFile(path.join(htmlPath, "index.html"));
 });
 
-router.get("/users/login", renderLoginPage);
+//render login
+viewRouter.get("/users/login", (req, res) => {
+  res.sendFile(path.join(htmlPath, "login.html"));
+});
 
-router.get("/users/perfil", (req, res) => {
+//render cadastro
+viewRouter.get("/users/cadastro", (req, res) => {
+  res.sendFile(path.join(htmlPath, "cadastro.html"));
+});
+
+viewRouter.get("/users/dashboard", (req, res) => {
+  res.sendFile(path.join(htmlPath, "dashboard.html"));
+});
+viewRouter.get("/users/perfil", (req, res) => {
   const currentUser = req.session.user || { nome: "Visitante" };
   res.render("update_profile", { user: currentUser });
 });
 
-export default router;
+export default viewRouter;

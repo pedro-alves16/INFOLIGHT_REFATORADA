@@ -45,8 +45,10 @@ a {
 }
 
 .sidebar {
+  flex: 0 0 244px;
   width: 244px;
   min-width: 244px;
+  min-height: 100vh;
   background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-bg-dark) 100%);
   color: var(--sidebar-text);
   display: flex;
@@ -444,8 +446,10 @@ canvas {
   }
 
   .sidebar {
+    flex: 0 0 auto;
     width: 100%;
     min-width: 0;
+    min-height: auto;
   }
 
   .links-nav {

@@ -1,24 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/dashboard.css" />
-    <title>Document</title>
+    <title>Dashboard - Infolight</title>
   </head>
 
   <body>
-    <%- include('./includes/sidebar.ejs')%>
+    <div id="sidebar-container"></div>
 
     <div class="content">
-      <%- include('./includes/header.ejs')%>
+      <div id="header-container"></div>
 
       <main>
         <div class="main-div">
           <div class="dashboard-header">
-            <small>PANEL DE CONTROLE</small>
+            <small>PAINEL DE CONTROLE</small>
             <h1>Bem-vindo à sua dashboard</h1>
-            <p>Uma visão simples para acompanhar o consumo e os custos da sua energia.</p>
+            <p>
+              Uma visão simples para acompanhar o consumo e os custos da sua
+              energia.
+            </p>
           </div>
 
           <div class="metrics-grid">
@@ -94,65 +97,13 @@
       </main>
     </div>
 
+    <!-- 1. Carrega o Chart.js PRIMEIRO -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      const ctx = document.getElementById("meuGrafico");
 
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["Jan", "Fev", "Mar", "Abr", "Mai"],
-          datasets: [
-            {
-              label: "Conta de Luz (R$)",
-              data: [120, 150, 130, 170, 160],
-              backgroundColor: "#5db79a",
-              borderRadius: 0,
-              borderSkipped: false,
-              borderWidth: 0,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-            tooltip: {
-              enabled: true,
-            },
-          },
-          scales: {
-            x: {
-              grid: {
-                display: false,
-              },
-              ticks: {
-                color: "#5a6d66",
-                font: {
-                  size: 12,
-                },
-              },
-            },
-            y: {
-              beginAtZero: true,
-              grace: "10%",
-              grid: {
-                color: "rgba(94, 118, 108, 0.14)",
-                drawBorder: false,
-              },
-              ticks: {
-                color: "#5a6d66",
-                font: {
-                  size: 12,
-                },
-              },
-            },
-          },
-        },
-      });
-    </script>
+    <!-- 2. Carrega o script de injeção dos componentes (Header/Sidebar) -->
+    <script src="/js/componentRender.js" type="module"></script>
+
+    <!-- 3. Carrega o script da dashboard como um MÓDULO por último -->
+    <script src="/js/dashboard.js" type="module"></script>
   </body>
 </html>
