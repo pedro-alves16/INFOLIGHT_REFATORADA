@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <title>Dashboard - Infolight</title>
+  </head>
+
+  <body>
+    <div id="sidebar-container"></div>
+
+    <div class="content">
+      <div id="header-container"></div>
+
+      <main>
+        <div class="main-div">
+          <div class="dashboard-header">
+            <small>PAINEL DE CONTROLE</small>
+            <h1>Bem-vindo à sua dashboard</h1>
+            <p>
+              Uma visão simples para acompanhar o consumo e os custos da sua
+              energia.
+            </p>
+          </div>
+
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <div class="metric-icon money">R$</div>
+              <div class="metric-content">
+                <span>Última conta</span>
+                <strong>R$ 160,00</strong>
+                <small>+4,2% neste mês</small>
+              </div>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon power">kWh</div>
+              <div class="metric-content">
+                <span>Consumo médio</span>
+                <strong>218 kWh</strong>
+                <small>média dos últimos 5 meses</small>
+              </div>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon savings">%</div>
+              <div class="metric-content">
+                <span>Economia estimada</span>
+                <strong>12,8%</strong>
+                <small>comparado ao período anterior</small>
+              </div>
+            </article>
+          </div>
+
+          <section class="chart-panel">
+            <div class="chart-header">
+              <h2>EVOLUÇÃO DA CONTA DE ENERGIA</h2>
+              <p>acompanhe seus custos e consumo mensal</p>
+            </div>
+
+            <div class="chart-legend">
+              <span class="legend-dot"></span>
+              <span>Conta de Luz (R$)</span>
+            </div>
+
+            <div class="chart-box">
+              <canvas id="meuGrafico"></canvas>
+            </div>
+          </section>
+
+          <section class="records-panel">
+            <div class="records-header">
+              <h3>Registros mensais</h3>
+              <p>Registre suas contas de luz para acompanhar evolução.</p>
+            </div>
+
+            <div class="records-grid">
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- 1. Carrega o Chart.js PRIMEIRO -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- 2. Carrega o script de injeção dos componentes (Header/Sidebar) -->
+    <script src="/js/componentRender.js" type="module"></script>
+
+    <!-- 3. Carrega o script da dashboard como um MÓDULO por último -->
+    <script src="/js/dashboard.js" type="module"></script>
+  </body>
+</html>

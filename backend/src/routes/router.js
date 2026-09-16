@@ -1,26 +1,38 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath, pathToFileURL } from "url";
-import {
-  renderCreatePage,
-  renderLoginPage,
-} from "../controllers/logincontroller.js";
-
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
 
-const router = express.Router();
+const viewRouter = express.Router();
 
-router.get("/cadastro", renderCreatePage);
+const htmlPath = path.resolve(_dirname, "../../../frontend/html");
 
-router.get("/", (req, res) => {
-  res.sendFile(path.resolve(_dirname, "../../../frontend/html/index.html"));
+//renderizando index (homepage)
+viewRouter.get("/", (req, res) => {
+  res.sendFile(path.join(htmlPath, "index.html"));
 });
 
-router.get("/users/login", renderLoginPage);
-
-router.get("/users/perfil", (req, res) => {
-  res.render("update_profile", { user: req.session.user });
+//render login
+viewRouter.get("/users/login", (req, res) => {
+  res.sendFile(path.join(htmlPath, "login.html"));
 });
 
-export default router;
+//render cadastro
+viewRouter.get("/users/cadastro", (req, res) => {
+  res.sendFile(path.join(htmlPath, "cadastro.html"));
+});
+
+viewRouter.get("/users/dashboard", (req, res) => {
+  res.sendFile(path.join(htmlPath, "dashboard.html"));
+});
+
+viewRouter.get("/unidadesConsumo", (req, res) => {
+  res.sendFile(path.join(htmlPath, "unidades de consumo.html"));
+});
+
+viewRouter.get("/users/perfil", (req, res) => {
+  res.sendFile(path.join(htmlPath, "update_profile.html"));
+});
+
+export default viewRouter;
