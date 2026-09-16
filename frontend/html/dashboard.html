@@ -15,84 +15,85 @@
 
       <main>
         <div class="main-div">
-          <div class="dashboard-header">
-            <small>PAINEL DE CONTROLE</small>
+          <div class="text-div">
+            <p class="eyebrow">PAINEL DE CONTROLE</p>
             <h1>Bem-vindo à sua dashboard</h1>
-            <p>
-              Uma visão simples para acompanhar o consumo e os custos da sua
-              energia.
-            </p>
+            <p>Uma visão simples para acompanhar o consumo e os custos da sua energia.</p>
           </div>
 
-          <div class="metrics-grid">
-            <article class="metric-card">
-              <div class="metric-icon money">R$</div>
-              <div class="metric-content">
-                <span>Última conta</span>
-                <strong>R$ 160,00</strong>
-                <small>+4,2% neste mês</small>
+          <section class="summary-grid" aria-label="Resumo do consumo">
+            <article class="summary-card summary-card-primary">
+              <span class="summary-icon">R$</span>
+              <div>
+                <p>Última conta</p>
+                <strong id="ultimaContaValor">R$ 0,00</strong>
+                <small id="ultimaContaPeriodo">Nenhuma conta cadastrada</small>
               </div>
             </article>
-
-            <article class="metric-card">
-              <div class="metric-icon power">kWh</div>
-              <div class="metric-content">
-                <span>Consumo médio</span>
-                <strong>218 kWh</strong>
-                <small>média dos últimos 5 meses</small>
+            <article class="summary-card">
+              <span class="summary-icon summary-icon-blue">R$</span>
+              <div>
+                <p>Valor médio</p>
+                <strong id="valorMedio">R$ 0,00</strong>
+                <small id="valorMedioPeriodo">dos meses cadastrados</small>
               </div>
             </article>
-
-            <article class="metric-card">
-              <div class="metric-icon savings">%</div>
-              <div class="metric-content">
-                <span>Economia estimada</span>
-                <strong>12,8%</strong>
-                <small>comparado ao período anterior</small>
+            <article class="summary-card">
+              <span class="summary-icon summary-icon-yellow">%</span>
+              <div>
+                <p>Variação mensal</p>
+                <strong id="variacaoMensal">0%</strong>
+                <small id="variacaoMensalTexto">Cadastre pelo menos duas contas</small>
               </div>
             </article>
-          </div>
-
-          <section class="chart-panel">
-            <div class="chart-header">
-              <h2>EVOLUÇÃO DA CONTA DE ENERGIA</h2>
-              <p>acompanhe seus custos e consumo mensal</p>
-            </div>
-
-            <div class="chart-legend">
-              <span class="legend-dot"></span>
-              <span>Conta de Luz (R$)</span>
-            </div>
-
-            <div class="chart-box">
-              <canvas id="meuGrafico"></canvas>
-            </div>
           </section>
 
-          <section class="records-panel">
-            <div class="records-header">
-              <h3>Registros mensais</h3>
+          <section class="graph">
+            <div class="text-div-graph">
+              <h1>EVOLUÇÃO DA CONTA DE ENERGIA</h1>
+              <p>acompanhe seus custos e consumo mensal</p>
+            </div>
+            <canvas id="meuGrafico"></canvas>
+          </section>
+
+          <section class="registro">
+            <div class="titulo">
+              <div class="registro-cabecalho">
+                <h2 class="titulo-registro">Registros mensais</h2>
+                <button class="botao-adicionar-conta" type="button">
+                  <span aria-hidden="true">+</span>
+                  Adicionar conta
+                </button>
+              </div>
               <p>Registre suas contas de luz para acompanhar evolução.</p>
             </div>
 
-            <div class="records-grid">
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
-              <div class="month-card">Outubro 2026</div>
+            <div class="tabela-wrapper">
+              <table class="tabela-consumos">
+                <thead><tr><th>Mês</th><th>Valor</th><th>Bandeira</th></tr></thead>
+                <tbody id="tabelaConsumos"></tbody>
+              </table>
+              <p class="tabela-vazia" id="tabelaVazia">Nenhuma conta cadastrada.</p>
             </div>
           </section>
+
+          <dialog class="dialog-conta" id="dialogConta">
+            <form class="form-conta" id="formConta">
+              <div class="dialog-cabecalho">
+                <div><p class="eyebrow">NOVA CONTA DE LUZ</p><h2>Adicionar conta</h2></div>
+                <button class="botao-fechar-dialog" id="fecharDialog" type="button" aria-label="Fechar">&times;</button>
+              </div>
+              <label for="mesConta">Mês e ano</label>
+              <input id="mesConta" name="mes" type="month" required />
+              <label for="valorConta">Valor da conta</label>
+              <div class="campo-valor"><span>R$</span><input id="valorConta" name="valor" type="number" min="0.01" step="0.01" required /></div>
+              <label for="bandeiraConta">Bandeira tarifária</label>
+              <select id="bandeiraConta" name="bandeira" required>
+                <option value="verde">Verde</option><option value="amarela">Amarela</option><option value="vermelha">Vermelha</option>
+              </select>
+              <div class="dialog-acoes"><button class="botao-cancelar" id="cancelarDialog" type="button">Cancelar</button><button class="botao-salvar-conta" type="submit">Salvar conta</button></div>
+            </form>
+          </dialog>
         </div>
       </main>
     </div>
