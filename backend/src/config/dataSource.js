@@ -1,5 +1,6 @@
 import typeorm from "typeorm";
 import { userSchema } from "../model/entities/userModel.js";
+import { billSchema } from "../model/entities/billModel.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -12,7 +13,7 @@ const dataSource = new typeorm.DataSource({
   ssl: {
     rejectUnauthorized: false,
   },
-  entities: [userSchema],
+  entities: [userSchema, billSchema],
 });
 
 export { dataSource };

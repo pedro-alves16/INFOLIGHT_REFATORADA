@@ -1,9 +1,19 @@
 import express from "express";
 import { dataSource } from "../config/dataSource.js";
 import { userTest, User, userSchema } from "../model/entities/userModel.js";
+import { billSchema } from "../model/entities/billModel.js";
 import jwt from "jsonwebtoken";
 
 const userRouter = express.Router();
+
+function getAuthenticatedUserId(req, res) {
+  if (!req.session.user?.id) {
+    res.status(401).json({ error: "Faça login para acessar suas contas." });
+    return null;
+  }
+
+  return req.session.user.id;
+}
 
 //rota para criar usuario
 userRouter.post("/users/create", async (req, res) => {
@@ -58,6 +68,42 @@ userRouter.post("/users/login", async (req, res) => {
   return res.json({
     error: "Senha incorreta",
   });
+});
+
+userRouter.get("/contas", async (req, res) => {
+  const userId = getAuthenticatedUserId(req, res);
+  if (!userId) return;
+
+  const billRepository = dataSource.getRepository(billSchema);
+  const contas = await billRepository.find({
+    where: { userId },
+    order: { mes: "DESC" },
+  });
+
+  res.json(contas);
+});
+
+userRouter.post("/contas", async (req, res) => {
+  const userId = getAuthenticatedUserId(req, res);
+  if (!userId) return;
+
+  const { mes, valor, bandeira } = req.body;
+  const valorNumerico = Number(valor);
+  const bandeirasPermitidas = ["verde", "amarela", "vermelha"];
+
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(mes) || !Number.isFinite(valorNumerico) || valorNumerico <= 0 || !bandeirasPermitidas.includes(bandeira)) {
+    return res.status(400).json({ error: "Dados da conta inválidos." });
+  }
+
+  const billRepository = dataSource.getRepository(billSchema);
+  const contaExistente = await billRepository.findOneBy({ userId, mes });
+  const conta = contaExistente || billRepository.create({ userId, mes });
+
+  conta.valor = valorNumerico;
+  conta.bandeira = bandeira;
+
+  const contaSalva = await billRepository.save(conta);
+  res.status(contaExistente ? 200 : 201).json(contaSalva);
 });
 
 userRouter.put("/users/update", async (req, res) => {
