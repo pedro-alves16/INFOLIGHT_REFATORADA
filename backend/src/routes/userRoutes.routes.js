@@ -1,119 +1,21 @@
 import express from "express";
 import { dataSource } from "../config/dataSource.js";
 import { userTest, User, userSchema } from "../model/entities/userModel.js";
+import { connectUser, createUser, deleteUser, updateUserData, updateUserPassword } from "../controller/userController.js";
 import jwt from "jsonwebtoken";
 
 const userRouter = express.Router();
 
 //rota para criar usuario
-userRouter.post("/users/create", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
-
-  const hasUser = await userRepository.findOneBy({ email: req.body.email });
-
-  if (hasUser) {
-    res.json({ error: "usuário já cadastrado, faça Login!" });
-    return;
-  }
-
-  const user = await userRepository.create(req.body);
-  const result = await userRepository.save(user);
-  return res.send(result);
-});
+userRouter.post("/users/create", createUser);
 
 //rota para fazer o login conectando o usuario
-userRouter.post("/users/login", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
+userRouter.post("/users/login", connectUser);
 
-  const userCredentials = req.body;
+userRouter.put("/users/update", updateUserData);
 
-  const userFromDatabase = await userRepository.findOneBy({
-    email: userCredentials.email,
-  });
+userRouter.put("/users/password", updateUserPassword);
 
-  if (!userFromDatabase) {
-    console.log(userFromDatabase);
-    return res.json({ error: "usuário não cadastrado, crie sua conta!" });
-  }
+userRouter.delete("/users/delete", deleteUser);
 
-  if (!userFromDatabase) {
-    return res.json({
-      error: "Usuário não encontrado",
-    });
-  }
-
-  if (userCredentials.password === userFromDatabase.password) {
-    req.session.user = {
-      id: userFromDatabase.id,
-      nome: userFromDatabase.userName,
-      email: userFromDatabase.email,
-    };
-
-    return res.status(200).json({
-      userName: userFromDatabase.userName,
-      canLoggin: true,
-    });
-  }
-
-  return res.json({
-    error: "Senha incorreta",
-  });
-});
-
-userRouter.put("/users/update", async (req, res) => {
-  const usuarioAtualizado = {
-    userName: req.body.userName,
-    email: req.body.email,
-  };
-  const userRepository = dataSource.getRepository(userSchema);
-
-  const user = await userRepository.findOneBy({ id: res.locals.user.id });
-
-  userRepository.merge(user, usuarioAtualizado);
-
-  const results = await userRepository.save(user);
-  res.json({ message: "usuario atualizado!" });
-});
-
-userRouter.put("/users/password", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
-
-  const senhas = {
-    senhaAntiga: req.body.senhaAntiga,
-    senhaNova: req.body.senhaNova,
-  };
-
-  const user = await userRepository.findOneBy({ id: res.locals.user.id });
-  if (user.password === senhas.senhaAntiga) {
-    userRepository.merge(user, { password: senhas.senhaNova });
-    const results = await userRepository.save(user);
-    res.json({
-      message: "senha alterada com sucesso!",
-    });
-  } else {
-    res.json({
-      error: "senha não alterada, algo deu errado!",
-    });
-    return;
-  }
-});
-
-userRouter.delete("/users/delete", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
-
-  const userPass = req.body.senha;
-
-  const user = await userRepository.findOneBy({ id: res.locals.user.id });
-
-  if (!user) {
-    return res.json({ error: "usuário não encontrado!" });
-  }
-
-  if (user.password === userPass) {
-    await userRepository.delete(user.id);
-    return res.json({ message: "usuario deletado!" });
-  }
-
-  return res.json({ error: "senha incorreta, tente novamente!" });
-});
 export default userRouter;
