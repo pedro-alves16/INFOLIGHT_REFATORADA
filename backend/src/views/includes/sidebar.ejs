@@ -1,41 +1,37 @@
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="brand">
-      <div class="brand-mark">IL</div>
-      <div class="brand-text">
-        <strong>INFOLIGHT</strong>
-        <span>gestão inteligente</span>
-      </div>
+    <div class="brand-mark">IL</div>
+    <div class="brand-copy">
+      <strong>INFOLIGHT</strong>
+      <span>gestão inteligente</span>
     </div>
   </div>
-
-  <nav class="links-nav" aria-label="Menu lateral">
-    <a href="/users/dashboard" class="active">
-      <span class="link-icon">▣</span>
-      <span>Dashboard</span>
+  <nav class="links-nav">
+    <p class="nav-label">Visão geral</p>
+    <a class="is-active" href="/users/dashboard" aria-current="page">
+      <img src="../assets/trello (4).svg" alt="" />
+      Dashboard
     </a>
     <a href="/unidadesConsumo">
-      <span class="link-icon">▤</span>
-      <span>Unidades de consumo</span>
+      <img src="../assets/bar_chart_32dp_2C9664_FILL0_wght400_GRAD0_opsz40.svg" alt="" />
+      Unidades de consumo
     </a>
-    <% const profileId = user && user.id ? user.id : ""; %>
-    <a href="/users/perfil<%= profileId ? `?id=${profileId}` : '' %>">
-      <span class="link-icon">◌</span>
-      <span>Minha Conta</span>
+    <a href="/users/perfil<% if (user) { %>?id=<%-user.id%><% } %>">
+      <img src="../assets/lightbulb_32dp_2C9664_FILL0_wght400_GRAD0_opsz40.svg" alt="" />
+      Minha Conta
     </a>
+    <p class="nav-label nav-label-secondary">Atalhos</p>
     <a href="/">
-      <span class="link-icon">⌂</span>
-      <span>Home</span>
+      <img src="../assets/eco_32dp_2C9664_FILL0_wght400_GRAD0_opsz40.svg" alt="" />
+      Home
     </a>
   </nav>
 
   <div class="sidebar-footer">
-    <div class="footer-brand">
-      <span class="footer-mark">→</span>
-      <div>
-        <strong>INFOLIGHT</strong>
-        <small>Energia sob controle</small>
-      </div>
+    <img src="../assets/log-out (2).svg" alt="" />
+    <div>
+      <strong>INFOLIGHT</strong>
+      <span>Energia sob controle</span>
     </div>
   </div>
 </aside>
