@@ -1,5 +1,7 @@
 import { dataSource } from "../config/dataSource.js";
 import { userSchema } from "../model/entities/userModel.js";
+import jwt from "jsonwebtoken";
+
 
 export async function createUser(req, res) {
     const userRepository = dataSource.getRepository(userSchema);
@@ -7,13 +9,13 @@ export async function createUser(req, res) {
     const hasUser = await userRepository.findOneBy({ email: req.body.email });
 
     if (hasUser) {
-        res.json({ error: "usuário já cadastrado, faça Login!" });
+        res.status(401).json({ error: "usuário já cadastrado, faça Login!" });
         return;
     }
 
-    const user = await userRepository.create(req.body);
+    const user = userRepository.create(req.body);
     const result = await userRepository.save(user);
-    return res.send(result);
+    return res.status(200);
 }
 
 export async function connectUser(req, res) {
@@ -26,25 +28,17 @@ export async function connectUser(req, res) {
     });
 
     if (!userFromDatabase) {
-        console.log(userFromDatabase);
         return res.json({ error: "usuário não cadastrado, crie sua conta!" });
     }
 
-    if (!userFromDatabase) {
-        return res.json({
-            error: "Usuário não encontrado",
-        });
-    }
-
     if (userCredentials.password === userFromDatabase.password) {
-        req.session.user = {
-            id: userFromDatabase.id,
-            nome: userFromDatabase.userName,
-            email: userFromDatabase.email,
-        };
+        const jwtRes = jwt.sign({ userId: userFromDatabase.id, userName: userFromDatabase.userName },
+            'secret-infolight-jwt-16',
+            { expiresIn: '1d' }
+        );
 
         return res.status(200).json({
-            userName: userFromDatabase.userName,
+            jwt: jwtRes,
             canLoggin: true,
         });
     }

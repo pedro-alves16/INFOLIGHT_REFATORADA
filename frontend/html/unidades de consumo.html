@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/unidades.css" />
     <title>Unidades de consumo - Infolight</title>
   </head>
   <body>
@@ -14,15 +15,141 @@
 
       <main>
         <div class="main-div">
-          <div class="dashboard-header">
-            <small>GESTAO DE ENERGIA</small>
-            <h1>Unidades de consumo</h1>
-            <p>Consulte e acompanhe suas unidades de consumo.</p>
+          <div class="units-header">
+            <div class="dashboard-header">
+              <h1>Unidades de consumo</h1>
+              <p>Consulte e acompanhe suas unidades de consumo.</p>
+            </div>
+            <button class="btn-add-unit" id="btn-add-unit">
+              <span class="btn-add-unit-icon">+</span>
+              Adicionar Aparelho
+            </button>
+          </div>
+
+          <div class="units-grid" id="units-grid">
+            <article class="unit-card">
+              <div class="unit-card-top">
+                <span class="unit-icon">&#10052;</span>
+                <div class="unit-info">
+                  <h3>Geladeira</h3>
+                  <span class="unit-specs">150W &middot; 24h/dia</span>
+                </div>
+              </div>
+
+              <div class="unit-consumption">
+                <span class="unit-consumption-icon">&#9889;</span>
+                <strong>108.0 kWh/mês</strong>
+                <span class="efficiency-badge efficiency-badge--medium">Média eficiência</span>
+              </div>
+
+              <div class="unit-cost">
+                Custo estimado <strong>R$ 81,00/mês</strong>
+              </div>
+            </article>
+
+            <article class="unit-card">
+              <div class="unit-card-top">
+                <span class="unit-icon">&#10052;</span>
+                <div class="unit-info">
+                  <h3>Ar-Condicionado</h3>
+                  <span class="unit-specs">1400W &middot; 8h/dia</span>
+                </div>
+              </div>
+
+              <div class="unit-consumption">
+                <span class="unit-consumption-icon">&#9889;</span>
+                <strong>336.0 kWh/mês</strong>
+                <span class="efficiency-badge efficiency-badge--low">Baixa eficiência</span>
+              </div>
+
+              <div class="unit-cost">
+                Custo estimado <strong>R$ 252,00/mês</strong>
+              </div>
+            </article>
           </div>
         </div>
       </main>
     </div>
 
+    <!-- Modal: Adicionar Aparelho -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+      <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <div class="modal-header">
+          <h2 id="modal-title">Adicionar Aparelho</h2>
+          <button class="modal-close" id="modal-close" type="button" aria-label="Fechar">
+            &times;
+          </button>
+        </div>
+
+        <form class="unit-form" id="unit-form">
+          <div class="form-group">
+            <label for="unit-name">Nome do Aparelho</label>
+            <input
+              type="text"
+              id="unit-name"
+              name="unit-name"
+              placeholder="ex: Geladeira, TV, Ar-condicionado"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="unit-type">Ícone / Tipo</label>
+            <select id="unit-type" name="unit-type">
+              <option value="geladeira">Geladeira</option>
+              <option value="ar-condicionado">Ar-condicionado</option>
+              <option value="tv">TV</option>
+              <option value="iluminacao">Iluminação</option>
+              <option value="outro" selected>Outro</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="unit-power">Potência (Watts)</label>
+              <input
+                type="number"
+                id="unit-power"
+                name="unit-power"
+                placeholder="ex: 150"
+                min="0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="unit-hours">Uso diário (horas)</label>
+              <input
+                type="number"
+                id="unit-hours"
+                name="unit-hours"
+                placeholder="ex: 8"
+                min="0"
+                max="24"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="unit-efficiency">Nível de Eficiência</label>
+            <select id="unit-efficiency" name="unit-efficiency">
+              <option value="alta">Alta eficiência</option>
+              <option value="media" selected>Média eficiência</option>
+              <option value="baixa">Baixa eficiência</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit-unit">Adicionar Aparelho</button>
+        </form>
+      </div>
+    </div>
+
     <script src="/js/componentRender.js" type="module"></script>
+    <script src="/js/unidades.js" defer></script>
   </body>
 </html>

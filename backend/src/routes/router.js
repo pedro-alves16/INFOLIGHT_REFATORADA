@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath, pathToFileURL } from "url";
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
+import { verificarToken } from "../middleware/verifyAcessToken.js";
 
 const viewRouter = express.Router();
 
@@ -27,12 +28,13 @@ viewRouter.get("/users/dashboard", (req, res) => {
   res.sendFile(path.join(htmlPath, "dashboard.html"));
 });
 
-viewRouter.get("/unidadesConsumo", (req, res) => {
+viewRouter.get("/users/unidadesConsumo", (req, res) => {
   res.sendFile(path.join(htmlPath, "unidades de consumo.html"));
 });
 
 viewRouter.get("/users/perfil", (req, res) => {
   res.sendFile(path.join(htmlPath, "update_profile.html"));
 });
+
 
 export default viewRouter;

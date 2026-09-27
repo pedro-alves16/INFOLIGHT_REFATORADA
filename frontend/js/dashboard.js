@@ -1,6 +1,10 @@
 import { renderComponent } from "./componentRender.js";
 const ctx = document.getElementById("meuGrafico");
+const token = localStorage.getItem('userToken');
 
+if (!token) {
+  window.location.href = '/users/login'
+}
 new Chart(ctx, {
   type: "bar",
   data: {

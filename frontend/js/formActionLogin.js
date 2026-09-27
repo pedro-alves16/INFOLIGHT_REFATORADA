@@ -18,26 +18,52 @@ botaoEnvio.addEventListener("click", async (e) => {
     return;
   }
 
-  const res = await axios.post("/users/login", {
-    email: inputEmail.value,
-    password: inputSenha.value,
-  });
+  try {
+    const res = await axios.post("/users/login", {
+      email: inputEmail.value,
+      password: inputSenha.value,
+    });
 
-  console.log(res.data);
+    if (!res.data.jwt) {
+      Toastify({
+        text: 'Acesso não autorizado!',
+        className: "info",
+        style: {
+          background: "red",
+        },
+        position: "center",
+      }).showToast();
+    }
+    console.log(res.data);
 
-  if (res.data.error) {
+    if (res.data.error) {
+      Toastify({
+        text: res.data.error,
+        className: "info",
+        style: {
+          background: "red",
+        },
+        position: "center",
+      }).showToast();
+      return;
+    }
+
+    if (res.status === 200) {
+      localStorage.setItem('userToken', res.data.jwt);
+      window.location.href = '/users/dashboard';
+    }
+  } catch (error) {
+    const mensagemErro = error.response?.data?.error || 'Acesso não autorizado!';
+
     Toastify({
-      text: res.data.error,
+      text: mensagemErro,
       className: "info",
       style: {
         background: "red",
       },
       position: "center",
     }).showToast();
-    return;
   }
-
-  window.location.href = `/users/dashboard?user=${res.data.userName}`;
 });
 
 function createError(input) {

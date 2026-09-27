@@ -1,8 +1,5 @@
 import express from "express";
-import { dataSource } from "../config/dataSource.js";
-import { userTest, User, userSchema } from "../model/entities/userModel.js";
 import { connectUser, createUser, deleteUser, updateUserData, updateUserPassword } from "../controller/userController.js";
-import jwt from "jsonwebtoken";
 
 const userRouter = express.Router();
 
