@@ -31,7 +31,7 @@ userRouter.post("/users/create", async (req, res) => {
   return res.send(result);
 });
 
-//rota para fazer o login conectando o usuario
+// ALTERAÇÃO: removido o comentário antigo desta rota de login.
 userRouter.post("/users/login", async (req, res) => {
   const userRepository = dataSource.getRepository(userSchema);
 
@@ -95,15 +95,21 @@ userRouter.post("/contas", async (req, res) => {
     return res.status(400).json({ error: "Dados da conta inválidos." });
   }
 
+  // ALTERAÇÃO: a conta agora é criada diretamente com todos os dados recebidos.
+  // ALTERAÇÃO: deixou de existir a busca e atualização de uma conta do mesmo mês.
+  // Armazena as informações da conta de luz no banco de dados.
   const billRepository = dataSource.getRepository(billSchema);
-  const contaExistente = await billRepository.findOneBy({ userId, mes });
-  const conta = contaExistente || billRepository.create({ userId, mes });
-
-  conta.valor = valorNumerico;
-  conta.bandeira = bandeira;
+  const conta = billRepository.create({
+    userId,
+    mes,
+    valor: valorNumerico,
+    bandeira,
+  });
 
   const contaSalva = await billRepository.save(conta);
-  res.status(contaExistente ? 200 : 201).json(contaSalva);
+  // ALTERAÇÃO: novas contas sempre retornam HTTP 201 (Created).
+  res.status(201).json(contaSalva);
+  // Fim da seção de armazenamento da conta de luz.
 });
 
 userRouter.put("/users/update", async (req, res) => {

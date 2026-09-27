@@ -418,6 +418,10 @@ canvas {
 .tabela-consumos tbody th { font-weight: 700; text-transform: capitalize; }
 .bandeira { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; }
 .bandeira::before { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
+.paginacao-contas { display: flex; align-items: center; justify-content: center; gap: 0.8rem; grid-column: 1 / -1; margin-top: 0.25rem; color: var(--cor-texto-secundario); font-size: 0.75rem; font-weight: 700; }
+.botao-paginacao { display: inline-grid; place-items: center; width: 2rem; height: 2rem; padding: 0; border-radius: 8px; font-size: 1.25rem; line-height: 1; }
+.botao-paginacao::before { display: none; }
+.botao-paginacao:disabled { cursor: not-allowed; opacity: 0.4; }
 .bandeira-verde { color: #238453; }.bandeira-amarela { color: #b58100; }.bandeira-vermelha { color: #c44638; }
 .tabela-vazia { padding: 1rem 0; color: var(--cor-texto-secundario); font-size: 0.8rem; }
 .dialog-conta { width: min(92vw, 430px); padding: 0; border: 1px solid var(--cor-borda); border-radius: 14px; color: var(--cor-texto-principal); box-shadow: 0 24px 70px rgba(21, 37, 32, 0.22); }
