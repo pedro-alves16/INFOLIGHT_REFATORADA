@@ -15,47 +15,81 @@
 
       <main>
         <div class="main-div">
-          <div class="text-div">
-            <h1>Bem-vindo à sua dashboard!</h1>
-            <p>Este é o resumo de seus dados.</p>
+          <div class="dashboard-header">
+            <small>PANEL DE CONTROLE</small>
+            <h1>Bem-vindo à sua dashboard</h1>
+            <p>Uma visão simples para acompanhar o consumo e os custos da sua energia.</p>
           </div>
-          <div class="graph">
-            <div class="text-div-graph">
-              <h1>EVOLUÇÃO DA CONTA DE ENERGIA</h1>
+
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <div class="metric-icon money">R$</div>
+              <div class="metric-content">
+                <span>Última conta</span>
+                <strong>R$ 160,00</strong>
+                <small>+4,2% neste mês</small>
+              </div>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon power">kWh</div>
+              <div class="metric-content">
+                <span>Consumo médio</span>
+                <strong>218 kWh</strong>
+                <small>média dos últimos 5 meses</small>
+              </div>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon savings">%</div>
+              <div class="metric-content">
+                <span>Economia estimada</span>
+                <strong>12,8%</strong>
+                <small>comparado ao período anterior</small>
+              </div>
+            </article>
+          </div>
+
+          <section class="chart-panel">
+            <div class="chart-header">
+              <h2>EVOLUÇÃO DA CONTA DE ENERGIA</h2>
               <p>acompanhe seus custos e consumo mensal</p>
             </div>
 
-            <canvas id="meuGrafico"></canvas>
-          </div>
+            <div class="chart-legend">
+              <span class="legend-dot"></span>
+              <span>Conta de Luz (R$)</span>
+            </div>
 
-          <div class="registro">
-            <div class="titulo">
-              <h2 class="titulo-registro">
-                <img
-                  src="../assets/dollar-sign.svg"
-                  alt=""
-                  class="cifrao"
-                />Registros mensais
-              </h2>
+            <div class="chart-box">
+              <canvas id="meuGrafico"></canvas>
+            </div>
+          </section>
+
+          <section class="records-panel">
+            <div class="records-header">
+              <h3>Registros mensais</h3>
               <p>Registre suas contas de luz para acompanhar evolução.</p>
             </div>
 
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-            <div class="mes">Outubro 2026</div>
-          </div>
+            <div class="records-grid">
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+              <div class="month-card">Outubro 2026</div>
+            </div>
+          </section>
         </div>
       </main>
     </div>
@@ -72,14 +106,51 @@
             {
               label: "Conta de Luz (R$)",
               data: [120, 150, 130, 170, 160],
-              borderWidth: 2,
-              tension: 0.3,
+              backgroundColor: "#5db79a",
+              borderRadius: 0,
+              borderSkipped: false,
+              borderWidth: 0,
             },
           ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+          scales: {
+            x: {
+              grid: {
+                display: false,
+              },
+              ticks: {
+                color: "#5a6d66",
+                font: {
+                  size: 12,
+                },
+              },
+            },
+            y: {
+              beginAtZero: true,
+              grace: "10%",
+              grid: {
+                color: "rgba(94, 118, 108, 0.14)",
+                drawBorder: false,
+              },
+              ticks: {
+                color: "#5a6d66",
+                font: {
+                  size: 12,
+                },
+              },
+            },
+          },
         },
       });
     </script>

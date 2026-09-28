@@ -1,3 +1,7 @@
-<header>
-  <button><%= user.nome %></button>
+<header class="topbar">
+  <div class="page-title">Resumo de consumo</div>
+  <div class="user-pill">
+    <span class="status-indicator"></span>
+    <span><%= user && user.nome ? user.nome : 'Visitante' %></span>
+  </div>
 </header>

@@ -1,169 +1,250 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-    --cor-fundo: #e3e6e3;
+    --cor-fundo: #f4f7f8;
+    --surface: #ffffff;
+    --texto: #14213d;
+    --muted: #6b7280;
+    --primario: #158a7b;
+    --primario-escuro: #2f7dc8;
+    --borda: #dde6ea;
+    --sombra: 0 20px 45px rgba(15, 23, 42, 0.08);
 }
 
-
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #f8fbfb 0%, #eef4f6 100%);
+    color: var(--texto);
 }
 
 .div_image {
     flex: 1;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(#359B74, #2F998D, #319BA0, #38A0CF);
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--primario), #2d8da8 45%, var(--primario-escuro));
+    position: relative;
+    overflow: hidden;
+}
+
+.div_image::before,
+.div_image::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+}
+
+.div_image::before {
+    width: 280px;
+    height: 280px;
+    top: -90px;
+    right: -80px;
+}
+
+.div_image::after {
+    width: 220px;
+    height: 220px;
+    bottom: -90px;
+    left: -50px;
 }
 
 .login_titulo {
-    font-size: 50px;
-    flex: wrap;
-    border: none;
-    container: initial;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-bottom: 30px;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.2;
+    max-width: 34rem;
+    margin-bottom: 1rem;
+    z-index: 1;
+}
 
+.login_subtittulo {
+    max-width: 32rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    opacity: 0.95;
+    z-index: 1;
 }
 
 .div_form {
-    flex-direction: column;
     flex: 1;
-    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    border: none;
+    padding: 2rem;
     background-color: var(--cor-fundo);
 }
 
 .div_login {
-    font-family: "plus jakarta sans";
-
+    width: min(100%, 430px);
 }
 
 .caixa {
-    width: 23rem;
-    height: 37rem;
-    border-color: #2F998D;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
+    background-color: var(--surface);
+    border: 1px solid rgba(21, 138, 123, 0.08);
+    border-radius: 24px;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-
-}
-
-
-button {
-    width: 250px;
-    height: 50px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(#359B74, #2F998D, #319BA0, #38A0CF);
-    color: #ffffff;
-    font-weight: 700;
-
-}
-
-.div_input {
-    text-align: left;
-    padding-left: 30px;
+    gap: 1rem;
+    box-shadow: var(--sombra);
 }
 
 .text {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    gap: 0.35rem;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+}
+
+.titulo_caixa {
+    text-align: left;
+    font-size: 1.7rem;
+    color: var(--texto);
+}
+
+.subtitulo_caixa {
+    text-align: left;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+button {
+    width: 100%;
+    height: 3rem;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primario), var(--primario-escuro));
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 25px rgba(21, 138, 123, 0.2);
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(47, 125, 200, 0.18);
+}
+
+.div_input,
+.input_div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
 label {
     text-align: start;
-    background-color: #e3e6e3;
-    ;
+    color: #4b5563;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .caixinha_mail {
-    border: 3px;
-    background-color: #e3e6e3;
-    padding: 1rem;
-    border-radius: 16px;
-    border: 1px solid grey;
-    min-width: 90%;
+    background-color: #f5f8fa;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--borda);
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 0.7rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
-
+.caixinha_mail:focus-within {
+    border-color: var(--primario);
+    box-shadow: 0 0 0 4px rgba(21, 138, 123, 0.12);
 }
 
 p {
     text-align: start;
+    margin-bottom: 0.2rem;
 }
 
 input {
     border: none;
-    background-color: #e3e6e3;
+    background-color: transparent;
     width: 100%;
     outline: none;
+    font-size: 1rem;
+    color: var(--texto);
 }
 
 .botao {
-    font-weight: bold;
-    font-family: "plus jakarta sans";
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .criar_conta {
-    width: 250px;
-    height: 50px;
-    border: none;
-    border-radius: 15px;
-    background-color: #e3e6e3;
-    color: black;
+    width: 100%;
+    height: 3rem;
+    border: 1px solid #dce8e8;
+    border-radius: 14px;
+    background-color: #f3f8f8;
+    color: #103b38;
     font-weight: 700;
-    font-family: "plus jakarta sans";
+    font-family: 'Plus Jakarta Sans', sans-serif;
     text-align: center;
     justify-content: center;
     display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
 
+.criar_conta:hover {
+    background-color: #e7f2f0;
+}
 
+img {
+    margin-right: 0.5rem;
 }
 
 a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: black;
+    color: inherit;
+}
+
+.header_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 .titulo_fora {
-    font-family: "plus jakarta sans";
-    font-size: larger;
-    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
     display: flex;
-
+    align-items: center;
+    color: var(--texto);
 }
 
-img {
-    margin-right: 0.5rem;
+.raio_fora {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 0;
+    margin-right: 0;
 }
 
 .icones {
@@ -171,22 +252,22 @@ img {
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    z-index: 1;
 }
 
 .flutuar {
     width: 80px;
-    animation: float 3s ease-in-out infinite;
+    animation: float 3.2s ease-in-out infinite;
+    z-index: 1;
 }
 
 @keyframes float {
     0% {
         transform: translateY(0px);
     }
-
     50% {
-        transform: translateY(-15px);
+        transform: translateY(-12px);
     }
-
     100% {
         transform: translateY(0px);
     }
@@ -205,11 +286,56 @@ img {
 }
 
 .error_msg {
-    color: red;
+    color: #dc2626;
+    font-size: 0.9rem;
 }
 
 .header {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_login {
+    display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.header_login img {
+    margin-right: 0;
+}
+
+.titulo_fora {
+    display: flex;
+    align-items: center;
+}
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+
+    .div_image {
+        min-height: 280px;
+        padding: 2rem 1.5rem;
+    }
+
+    .div_form {
+        padding: 1.5rem 1rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .caixa {
+        padding: 1.25rem;
+    }
+
+    .titulo_caixa {
+        font-size: 1.5rem;
+    }
+
+    .login_titulo {
+        font-size: 1.8rem;
+    }
 }

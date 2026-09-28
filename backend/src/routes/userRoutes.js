@@ -65,7 +65,8 @@ userRouter.get("/users/dashboard", (req, res) => {
 
   console.log(req.session);
 
-  res.render("dashboard", { user: req.session.user });
+  const currentUser = req.session.user || { nome: "Visitante" };
+  res.render("dashboard", { user: currentUser });
 });
 
 userRouter.put("/users/update", async (req, res) => {
