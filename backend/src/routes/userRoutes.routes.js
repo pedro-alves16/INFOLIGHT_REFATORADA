@@ -1,6 +1,7 @@
 import express from "express";
 import { dataSource } from "../config/dataSource.js";
 import { userTest, User, userSchema } from "../model/entities/userModel.js";
+import { createUser, deleteUser, updateUser } from "../model/userService.js";
 import jwt from "jsonwebtoken";
 
 const userRouter = express.Router();
@@ -8,16 +9,7 @@ const userRouter = express.Router();
 //rota para criar usuario
 userRouter.post("/users/create", async (req, res) => {
   const userRepository = dataSource.getRepository(userSchema);
-
-  const hasUser = await userRepository.findOneBy({ email: req.body.email });
-
-  if (hasUser) {
-    res.json({ error: "usuário já cadastrado, faça Login!" });
-    return;
-  }
-
-  const user = await userRepository.create(req.body);
-  const result = await userRepository.save(user);
+  const result = await createUser(userRepository, req.body);
   return res.send(result);
 });
 
@@ -61,18 +53,9 @@ userRouter.post("/users/login", async (req, res) => {
 });
 
 userRouter.put("/users/update", async (req, res) => {
-  const usuarioAtualizado = {
-    userName: req.body.userName,
-    email: req.body.email,
-  };
   const userRepository = dataSource.getRepository(userSchema);
-
-  const user = await userRepository.findOneBy({ id: res.locals.user.id });
-
-  userRepository.merge(user, usuarioAtualizado);
-
-  const results = await userRepository.save(user);
-  res.json({ message: "usuario atualizado!" });
+  const result = await updateUser(userRepository, res.locals.user.id, req.body);
+  return res.json(result);
 });
 
 userRouter.put("/users/password", async (req, res) => {
@@ -100,20 +83,11 @@ userRouter.put("/users/password", async (req, res) => {
 
 userRouter.delete("/users/delete", async (req, res) => {
   const userRepository = dataSource.getRepository(userSchema);
-
-  const userPass = req.body.senha;
-
-  const user = await userRepository.findOneBy({ id: res.locals.user.id });
-
-  if (!user) {
-    return res.json({ error: "usuário não encontrado!" });
-  }
-
-  if (user.password === userPass) {
-    await userRepository.delete(user.id);
-    return res.json({ message: "usuario deletado!" });
-  }
-
-  return res.json({ error: "senha incorreta, tente novamente!" });
+  const result = await deleteUser(
+    userRepository,
+    res.locals.user.id,
+    req.body.senha,
+  );
+  return res.json(result);
 });
 export default userRouter;

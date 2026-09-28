@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "poku tests",
     "dev": "npx nodemon server.js",
     "start": "node server.js"
   },
@@ -28,6 +28,7 @@
     "mysql2": "^3.22.3",
     "nodemon": "^3.1.14",
     "pg": "^8.21.0",
+    "poku": "^4.5.0",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^1.0.0",
     "typescript": "^6.0.3"
