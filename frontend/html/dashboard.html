@@ -70,7 +70,7 @@
 
             <div class="tabela-wrapper">
               <table class="tabela-consumos">
-                <thead><tr><th>Mês</th><th>Valor</th><th>Bandeira</th></tr></thead>
+                <thead><tr><th>Mês</th><th>Valor</th><th>Bandeira</th><th>Ações</th></tr></thead>
                 <tbody id="tabelaConsumos"></tbody>
               </table>
               <p class="tabela-vazia" id="tabelaVazia">Nenhuma conta cadastrada.</p>
@@ -85,7 +85,7 @@
           <dialog class="dialog-conta" id="dialogConta">
             <form class="form-conta" id="formConta">
               <div class="dialog-cabecalho">
-                <div><p class="eyebrow">NOVA CONTA DE LUZ</p><h2>Adicionar conta</h2></div>
+                <div><p class="eyebrow" id="dialogEyebrow">NOVA CONTA DE LUZ</p><h2 id="dialogTitulo">Adicionar conta</h2></div>
                 <button class="botao-fechar-dialog" id="fecharDialog" type="button" aria-label="Fechar">&times;</button>
               </div>
               <label for="mesConta">Mês e ano</label>
@@ -96,7 +96,7 @@
               <select id="bandeiraConta" name="bandeira" required>
                 <option value="verde">Verde</option><option value="amarela">Amarela</option><option value="vermelha">Vermelha</option>
               </select>
-              <div class="dialog-acoes"><button class="botao-cancelar" id="cancelarDialog" type="button">Cancelar</button><button class="botao-salvar-conta" type="submit">Salvar conta</button></div>
+              <div class="dialog-acoes"><button class="botao-cancelar" id="cancelarDialog" type="button">Cancelar</button><button class="botao-salvar-conta" id="botaoSalvarConta" type="submit">Salvar conta</button></div>
             </form>
           </dialog>
         </div>

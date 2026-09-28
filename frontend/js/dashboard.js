@@ -6,7 +6,11 @@ const paginacaoContas = document.getElementById("paginacaoContas");
 const paginaAnterior = document.getElementById("paginaAnterior");
 const paginaProxima = document.getElementById("paginaProxima");
 const indicadorPagina = document.getElementById("indicadorPagina");
+const dialogEyebrow = document.getElementById("dialogEyebrow");
+const dialogTitulo = document.getElementById("dialogTitulo");
+const botaoSalvarConta = document.getElementById("botaoSalvarConta");
 const contas = [];
+let contaEmEdicaoId = null;
 
 // Controla a paginação dos registros mensais exibidos na tabela.
 const contasPorPagina = 4;
@@ -29,7 +33,7 @@ function renderizarTabela() {
   const inicio = (paginaAtual - 1) * contasPorPagina;
   const contasDaPagina = ordenadas.slice(inicio, inicio + contasPorPagina);
   tabelaConsumos.innerHTML = contasDaPagina.map((conta) => `
-    <tr><th scope="row">${formatarMes(conta.mes)}</th><td>${formatarValor(conta.valor)}</td><td><span class="bandeira bandeira-${conta.bandeira}">${nomesBandeiras[conta.bandeira]}</span></td></tr>
+    <tr><th scope="row">${formatarMes(conta.mes)}</th><td>${formatarValor(conta.valor)}</td><td><span class="bandeira bandeira-${conta.bandeira}">${nomesBandeiras[conta.bandeira]}</span></td><td><div class="acoes-conta"><button class="botao-acao-conta botao-editar-conta" type="button" data-acao="editar" data-id="${conta.id}">Editar</button><button class="botao-acao-conta botao-excluir-conta" type="button" data-acao="excluir" data-id="${conta.id}">Excluir</button></div></td></tr>
   `).join("");
   tabelaVazia.hidden = ordenadas.length > 0;
   paginacaoContas.hidden = totalPaginas === 1;
@@ -76,13 +80,54 @@ async function carregarContas() {
   }
   if (!resposta.ok) return atualizarDashboard();
   const dados = await resposta.json();
-  contas.splice(0, contas.length, ...dados.map((conta) => ({ mes: conta.mes, valor: Number(conta.valor), bandeira: conta.bandeira })));
+  contas.splice(0, contas.length, ...dados.map((conta) => ({ id: conta.id, mes: conta.mes, valor: Number(conta.valor), bandeira: conta.bandeira })));
   atualizarDashboard();
 }
 
-document.querySelector(".botao-adicionar-conta").addEventListener("click", () => dialogConta.showModal());
+function abrirDialogParaAdicionar() {
+  contaEmEdicaoId = null;
+  formConta.reset();
+  dialogEyebrow.textContent = "NOVA CONTA DE LUZ";
+  dialogTitulo.textContent = "Adicionar conta";
+  botaoSalvarConta.textContent = "Salvar conta";
+  dialogConta.showModal();
+}
+
+function abrirDialogParaEditar(conta) {
+  contaEmEdicaoId = conta.id;
+  formConta.elements.mes.value = conta.mes;
+  formConta.elements.valor.value = conta.valor;
+  formConta.elements.bandeira.value = conta.bandeira;
+  dialogEyebrow.textContent = "EDITAR CONTA DE LUZ";
+  dialogTitulo.textContent = "Editar conta";
+  botaoSalvarConta.textContent = "Salvar alterações";
+  dialogConta.showModal();
+}
+
+document.querySelector(".botao-adicionar-conta").addEventListener("click", abrirDialogParaAdicionar);
 document.getElementById("fecharDialog").addEventListener("click", () => dialogConta.close());
 document.getElementById("cancelarDialog").addEventListener("click", () => dialogConta.close());
+tabelaConsumos.addEventListener("click", async (evento) => {
+  const botao = evento.target.closest("button[data-acao]");
+  if (!botao) return;
+
+  const conta = contas.find((item) => item.id === Number(botao.dataset.id));
+  if (!conta) return;
+  if (botao.dataset.acao === "editar") return abrirDialogParaEditar(conta);
+  if (!window.confirm(`Excluir a conta de ${formatarMes(conta.mes)}?`)) return;
+
+  try {
+    const resposta = await fetch(`/contas/${conta.id}`, { method: "DELETE", credentials: "same-origin" });
+    if (resposta.status === 401) return (window.location.href = "/users/login");
+    if (!resposta.ok) {
+      const erro = await resposta.json().catch(() => null);
+      return window.alert(erro?.error || "Não foi possível excluir a conta.");
+    }
+    await carregarContas();
+  } catch {
+    window.alert("Não foi possível conectar ao servidor.");
+  }
+});
 paginaAnterior.addEventListener("click", () => {
   if (paginaAtual > 1) {
     paginaAtual -= 1;
@@ -100,9 +145,10 @@ paginaProxima.addEventListener("click", () => {
 formConta.addEventListener("submit", async (evento) => {
   evento.preventDefault();
   const dados = new FormData(formConta);
+  const editando = contaEmEdicaoId !== null;
   try {
-    const resposta = await fetch("/contas", {
-      method: "POST",
+    const resposta = await fetch(editando ? `/contas/${contaEmEdicaoId}` : "/contas", {
+      method: editando ? "PUT" : "POST",
       credentials: "same-origin",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mes: dados.get("mes"), valor: Number(dados.get("valor")), bandeira: dados.get("bandeira") }),
@@ -120,6 +166,7 @@ formConta.addEventListener("submit", async (evento) => {
 
     await carregarContas();
     formConta.reset();
+  contaEmEdicaoId = null;
     dialogConta.close();
   } catch {
     window.alert("Não foi possível conectar ao servidor.");

@@ -416,6 +416,12 @@ canvas {
 .tabela-consumos th, .tabela-consumos td { padding: 0.85rem 0.75rem; border-bottom: 1px solid var(--cor-borda); text-align: left; }
 .tabela-consumos thead th { color: var(--cor-texto-secundario); font-size: 0.68rem; text-transform: uppercase; }
 .tabela-consumos tbody th { font-weight: 700; text-transform: capitalize; }
+.acoes-conta { display: flex; gap: 0.45rem; }
+.botao-acao-conta { padding: 0.4rem 0.65rem; border-radius: 7px; font-size: 0.7rem; box-shadow: none; }
+.botao-acao-conta::before { display: none; }
+.botao-editar-conta { background: var(--verde-suave); color: var(--verde-escuro); }
+.botao-excluir-conta { background: #fff0ee; color: #b33b30; }
+.botao-acao-conta:hover { filter: brightness(0.96); }
 .bandeira { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; }
 .bandeira::before { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
 .paginacao-contas { display: flex; align-items: center; justify-content: center; gap: 0.8rem; grid-column: 1 / -1; margin-top: 0.25rem; color: var(--cor-texto-secundario); font-size: 0.75rem; font-weight: 700; }

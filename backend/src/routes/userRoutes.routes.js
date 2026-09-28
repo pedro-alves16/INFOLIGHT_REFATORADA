@@ -112,6 +112,38 @@ userRouter.post("/contas", async (req, res) => {
   // Fim da seção de armazenamento da conta de luz.
 });
 
+userRouter.put("/contas/:id", async (req, res) => {
+  const userId = getAuthenticatedUserId(req, res);
+  if (!userId) return;
+
+  const { mes, valor, bandeira } = req.body;
+  const valorNumerico = Number(valor);
+  const bandeirasPermitidas = ["verde", "amarela", "vermelha"];
+
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(mes) || !Number.isFinite(valorNumerico) || valorNumerico <= 0 || !bandeirasPermitidas.includes(bandeira)) {
+    return res.status(400).json({ error: "Dados da conta inválidos." });
+  }
+
+  const billRepository = dataSource.getRepository(billSchema);
+  const conta = await billRepository.findOneBy({ id: Number(req.params.id), userId });
+  if (!conta) return res.status(404).json({ error: "Conta não encontrada." });
+
+  billRepository.merge(conta, { mes, valor: valorNumerico, bandeira });
+  const contaAtualizada = await billRepository.save(conta);
+  res.json(contaAtualizada);
+});
+
+userRouter.delete("/contas/:id", async (req, res) => {
+  const userId = getAuthenticatedUserId(req, res);
+  if (!userId) return;
+
+  const billRepository = dataSource.getRepository(billSchema);
+  const resultado = await billRepository.delete({ id: Number(req.params.id), userId });
+  if (!resultado.affected) return res.status(404).json({ error: "Conta não encontrada." });
+
+  res.status(204).send();
+});
+
 userRouter.put("/users/update", async (req, res) => {
   const usuarioAtualizado = {
     userName: req.body.userName,
