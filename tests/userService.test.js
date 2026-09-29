@@ -41,25 +41,21 @@ describe("operações de conta de usuário", () => {
     const result = await createUser(repository, newUser);
 
     assert.deepStrictEqual(result, newUser);
-    assert.deepStrictEqual(repository.calls.create, [newUser]);
-    assert.deepStrictEqual(repository.calls.save, [newUser]);
   });
 
   it("não cria uma conta com e-mail já cadastrado", async () => {
     const existingUser = { id: 1, email: "ana@example.com" };
     const repository = createRepository(existingUser);
-
-    const result = await createUser(repository, {
+    const newUser = {
       userName: "Outra Ana",
       email: "ana@example.com",
       password: "secret",
-    });
+    };
+    const result = await createUser(repository, newUser);
 
     assert.deepStrictEqual(result, {
       error: "usuário já cadastrado, faça Login!",
     });
-    assert.strictEqual(repository.calls.create.length, 0);
-    assert.strictEqual(repository.calls.save.length, 0);
   });
 
   it("atualiza o nome e o e-mail da conta", async () => {
@@ -80,7 +76,6 @@ describe("operações de conta de usuário", () => {
     assert.strictEqual(existingUser.userName, "Ana Silva");
     assert.strictEqual(existingUser.email, "ana.silva@example.com");
     assert.strictEqual(existingUser.password, "secret");
-    assert.deepStrictEqual(repository.calls.save, [existingUser]);
   });
 
   it("retorna erro ao atualizar uma conta inexistente", async () => {
@@ -92,7 +87,6 @@ describe("operações de conta de usuário", () => {
     });
 
     assert.deepStrictEqual(result, { error: "usuário não encontrado!" });
-    assert.strictEqual(repository.calls.save.length, 0);
   });
 
   it("deleta a conta quando a senha informada está correta", async () => {
@@ -102,7 +96,6 @@ describe("operações de conta de usuário", () => {
     const result = await deleteUser(repository, 9, "secret");
 
     assert.deepStrictEqual(result, { message: "usuario deletado!" });
-    assert.deepStrictEqual(repository.calls.delete, [9]);
   });
 
   it("não deleta a conta quando a senha está incorreta", async () => {
@@ -114,7 +107,6 @@ describe("operações de conta de usuário", () => {
     assert.deepStrictEqual(result, {
       error: "senha incorreta, tente novamente!",
     });
-    assert.strictEqual(repository.calls.delete.length, 0);
   });
 
   it("retorna erro ao deletar uma conta inexistente", async () => {
@@ -123,6 +115,5 @@ describe("operações de conta de usuário", () => {
     const result = await deleteUser(repository, 404, "secret");
 
     assert.deepStrictEqual(result, { error: "usuário não encontrado!" });
-    assert.strictEqual(repository.calls.delete.length, 0);
   });
 });

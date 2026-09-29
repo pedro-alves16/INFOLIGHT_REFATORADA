@@ -13,6 +13,48 @@ userRouter.post("/users/create", async (req, res) => {
   return res.send(result);
 });
 
+//rota para atualizar usuario
+userRouter.put("/users/update", async (req, res) => {
+  const userRepository = dataSource.getRepository(userSchema);
+  const result = await updateUser(userRepository, res.locals.user.id, req.body);
+  return res.json(result);
+});
+
+//rota para deletar usuario
+userRouter.delete("/users/delete", async (req, res) => {
+  const userRepository = dataSource.getRepository(userSchema);
+  const result = await deleteUser(
+    userRepository,
+    res.locals.user.id,
+    req.body.senha,
+  );
+  return res.json(result);
+});
+
+//rota para alterar senha do usuario
+userRouter.put("/users/password", async (req, res) => {
+  const userRepository = dataSource.getRepository(userSchema);
+
+  const senhas = {
+    senhaAntiga: req.body.senhaAntiga,
+    senhaNova: req.body.senhaNova,
+  };
+
+  const user = await userRepository.findOneBy({ id: res.locals.user.id });
+  if (user.password === senhas.senhaAntiga) {
+    userRepository.merge(user, { password: senhas.senhaNova });
+    const results = await userRepository.save(user);
+    res.json({
+      message: "senha alterada com sucesso!",
+    });
+  } else {
+    res.json({
+      error: "senha não alterada, algo deu errado!",
+    });
+    return;
+  }
+});
+
 //rota para fazer o login conectando o usuario
 userRouter.post("/users/login", async (req, res) => {
   const userRepository = dataSource.getRepository(userSchema);
@@ -52,42 +94,4 @@ userRouter.post("/users/login", async (req, res) => {
   });
 });
 
-userRouter.put("/users/update", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
-  const result = await updateUser(userRepository, res.locals.user.id, req.body);
-  return res.json(result);
-});
-
-userRouter.put("/users/password", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
-
-  const senhas = {
-    senhaAntiga: req.body.senhaAntiga,
-    senhaNova: req.body.senhaNova,
-  };
-
-  const user = await userRepository.findOneBy({ id: res.locals.user.id });
-  if (user.password === senhas.senhaAntiga) {
-    userRepository.merge(user, { password: senhas.senhaNova });
-    const results = await userRepository.save(user);
-    res.json({
-      message: "senha alterada com sucesso!",
-    });
-  } else {
-    res.json({
-      error: "senha não alterada, algo deu errado!",
-    });
-    return;
-  }
-});
-
-userRouter.delete("/users/delete", async (req, res) => {
-  const userRepository = dataSource.getRepository(userSchema);
-  const result = await deleteUser(
-    userRepository,
-    res.locals.user.id,
-    req.body.senha,
-  );
-  return res.json(result);
-});
 export default userRouter;
